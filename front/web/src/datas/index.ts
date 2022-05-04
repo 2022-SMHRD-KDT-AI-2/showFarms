@@ -1,11 +1,5 @@
-interface ILoginTargetUrl {
-    naver: string;
-    kakao: string;
-    google: string;
-}
-
-export const loginTargetUrl = <ILoginTargetUrl>{
-    naver: "www.naver.com",
-    kakao: "www.daum.com",
-    google: "www.google.com",
+export const loginTargetUrl = {
+  KAKAO: "www.daum.com" as string,
+  NAVER: "www.naver.com" as string,
+  GOOGLE: "www.google.com" as string,
 };
