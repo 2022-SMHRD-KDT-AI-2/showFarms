@@ -25,11 +25,30 @@ export const GridBox = styled(FlexColumnDiv)`
   margin-top: 10rem;
 `;
 
-export const Button = styled.button`
+export const LoginButton = styled.button`
   width: 20rem;
   height: 4.5rem;
   margin: 2rem 0 2rem 0;
-  background-color: white;
+  background-color: ${(props) => props.color};
   border-radius: 0.5rem;
   border: none;
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+`;
+
+export const ColorDiv = styled.div`
+  height: 5rem;
+  background-color: ${(props) => props.color};
+`;
+
+export const TitleText = styled.p`
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+`;
+
+export const MiddleText = styled.p`
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 `;

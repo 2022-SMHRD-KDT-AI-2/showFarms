@@ -1,26 +1,38 @@
 import React, {useEffect, useState, useRef} from "react";
-import {MapContainer} from "../../styles/layout";
+import {KaKaoMap, MapContainer} from "../../styles/layout";
+import {coordState, ICoord} from "../../atom/common";
+import {useRecoilValue} from "recoil";
+import ShopList from "../../components/shopList";
 
 declare global {
-  interface Window {
-    kakao: any;
-  }
+    interface Window {
+        kakao: any;
+    }
 }
 
 const {kakao} = window;
 
-export default function KakaoMap() {
-  const [map, setMap] = useState(null);
+export default function Map() {
+    const coordination = useRecoilValue(coordState);
+    const [map, setMap] = useState(null);
+    const mapRef = useRef<HTMLDivElement>(null);
 
-  const mapRef = useRef(null);
+    useEffect(() => {
+        if (coordination) {
+            setMap(
+                new kakao.maps.Map(mapRef.current, {
+                    center: new kakao.maps.LatLng(coordination.lat, coordination.long),
+                    level: 4,
+                })
+            );
+        }
+    }, [coordination]);
 
-  useEffect(() => {
-    const options = {
-      center: new kakao.maps.LatLng(37.50802, 127.062835),
-      level: 3,
-    };
-    setMap(new kakao.maps.Map(mapRef.current, options));
-  }, []);
-
-  return <MapContainer id="container" ref={mapRef}/>;
+    console.log(map)
+    return (
+        <MapContainer>
+            <KaKaoMap id="container" ref={mapRef}/>
+            <ShopList/>
+        </MapContainer>
+    );
 }
