@@ -19,20 +19,20 @@ import {
   TextEditorContainer,
 } from "../../../styles/element";
 
-type IInput<T> = {
+type TInput<T> = {
   value: T;
   handler: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 interface IHtmlState {
   setHtmlState: Dispatch<SetStateAction<string>>;
-  title: IInput<string>;
-  price: IInput<string>;
-  unit: IInput<string>;
-  option: IInput<string>;
+  title: TInput<string>;
+  price: TInput<string>;
+  unit: TInput<string>;
+  option: TInput<string>;
   addOption: () => void;
   image: {
-    base64: string | ArrayBuffer;
+    base64: string;
     image: File | undefined;
     handler: (e: React.ChangeEvent<HTMLInputElement>) => void;
   };
@@ -49,11 +49,16 @@ const TextEditor = ({
 }: IHtmlState) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const imgRef = useRef<HTMLInputElement>(null);
-
+  /*
+   *  editor state change handler
+   * */
   const onChangeEditorState = useCallback((state: EditorState) => {
     setEditorState(state);
   }, []);
 
+  /*
+   * 이미지 클릭 시 input(type=file) 실행
+   * */
   const onClickImg = useCallback(() => {
     if (imgRef.current) {
       imgRef.current.click();

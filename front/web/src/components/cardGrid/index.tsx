@@ -1,9 +1,12 @@
 import React, { useRef, useState } from "react";
-import { Line } from "../../styles/common";
+import { FlexRowDiv, Line } from "../../styles/common";
 import {
   CardGridContainer,
   CardGridContents,
   CardGridHeader,
+  GirdHeader,
+  Link,
+  MoreView,
 } from "../../styles/element";
 import Card from "../card";
 
@@ -14,35 +17,54 @@ interface ICardGrid {
 const tempData = [
   {
     img: "",
-    title: "asdf",
-    seller: "asdf",
+    title: "제목제목제목제목제목제목제목제목",
+    seller: "김덕순",
+    discount: 10,
+    price: 15000,
+    shipmentFee: "free",
   },
   {
     img: "",
-    title: "asdf",
-    seller: "asdf",
+    title: "제목제목제목제목제목제목제목제목",
+    seller: "김덕순",
+    discount: 10,
+    price: 15000,
+    shipmentFee: "free",
   },
   {
     img: "",
-    title: "asdf",
-    seller: "asdf",
+    title: "제목제목제목제목제목제목제목제목",
+    seller: "김덕순",
+    discount: 10,
+    price: 15000,
+    shipmentFee: "free",
   },
   {
     img: "",
-    title: "asdf",
-    seller: "asdf",
+    title: "제목제목제목제목제목제목제목제목",
+    seller: "김덕순",
+    discount: 10,
+    price: 15000,
+    shipmentFee: "free",
   },
   {
     img: "",
-    title: "asdf",
-    seller: "asdf",
+    title: "제목제목제목제목제목제목제목제목",
+    seller: "김덕순",
+    discount: 10,
+    price: 15000,
+    shipmentFee: "free",
   },
 ];
 
 const CardGrid = ({ category }: ICardGrid) => {
   return (
     <CardGridContainer>
-      <CardGridHeader>{category}</CardGridHeader>
+      <GirdHeader>
+        <CardGridHeader>{category}</CardGridHeader>
+        <Link>더보기</Link>
+      </GirdHeader>
+
       <CardGridContents>
         {tempData.map((item, index) => {
           return (
@@ -50,12 +72,14 @@ const CardGrid = ({ category }: ICardGrid) => {
               title={item.title}
               img={item.img}
               seller={item.seller}
+              discount={item.discount}
+              price={item.price}
+              shipmentFee={item.shipmentFee}
               key={index}
             />
           );
         })}
       </CardGridContents>
-      <Line />
     </CardGridContainer>
   );
 };

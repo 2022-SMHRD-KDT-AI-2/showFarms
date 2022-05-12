@@ -43,11 +43,17 @@ export const Button = styled.button`
 `;
 
 export const CardContainer = styled(FlexColumnDiv)`
-  width: 30rem;
-  border: 1px solid gray;
+  width: 35rem;
   height: 40rem;
   margin: 1rem;
-  display: inline-block;
+
+  text {
+    margin: 0.5rem 0 0 1rem;
+  }
+
+  &:hover {
+    background-color: ${agriculture[3]};
+  }
 `;
 
 export const CardImg = styled.img`
@@ -63,23 +69,34 @@ export const CardHeader = styled.text`
 
 export const CardContents = styled.text`
   font-size: 1.1rem;
-  margin-left: 1rem;
 `;
 export const CardGridContainer = styled(FlexColumnDiv)`
   flex-wrap: wrap;
-  margin: 1rem 0 1rem 0;
+  margin: 1rem;
+`;
+export const CardDiscount = styled.text`
+  font-size: 1.1rem;
+  color: ${agriculture[1]};
+  font-weight: bold;
+`;
+export const CardPrevPrice = styled.text`
+  font-size: 1.1rem;
+  text-decoration: line-through;
 `;
 
 export const CardGridHeader = styled(FlexRowDiv)`
-  border-bottom: 1px solid gray;
   font-size: 3rem;
   font-weight: bold;
   padding: 1rem;
+  position: initial;
 `;
 
 export const CardGridContents = styled(FlexRowDiv)`
   width: 100%;
-  overflow-x: scroll;
+  flex-wrap: wrap;
+
+  text {
+  }
 
   ::-webkit-scrollbar {
     display: none;
@@ -113,6 +130,7 @@ export const Link = styled.a`
   &:hover {
     border-bottom: 4px solid ${agriculture[1]};
     font-size: 1.8rem;
+    cursor: pointer;
   }
 `;
 
@@ -182,4 +200,29 @@ export const PostHeader = styled(FlexRowDiv)`
   border-bottom: 1px solid gray;
   padding-bottom: 2rem;
   margin-bottom: 2rem;
+`;
+
+export const MapMarker = styled.div`
+  background-color: rgba(255, 255, 255, 0.3);
+  font-size: 1.2rem;
+  border: 3px solid ${agriculture[1]};
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1.5rem;
+`;
+
+export const MoreView = styled.a`
+  font-size: 1.4rem;
+  margin-right: 2rem;
+
+  &:hover {
+    border-bottom: 0.3rem solid ${agriculture[1]};
+    margin: 0.85rem;
+    font-size: 2rem;
+  }
+`;
+
+export const GirdHeader = styled(FlexRowDiv)`
+  align-items: center;
+  justify-content: space-between;
 `;

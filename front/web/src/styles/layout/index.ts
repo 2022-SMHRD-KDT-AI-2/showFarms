@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { FlexColumnDiv, FlexRowDiv } from "../common";
-import { blackAndWhite } from "../../datas/color";
+import { agriculture, blackAndWhite } from "../../datas/color";
 
 export const HeaderContainer = styled(FlexRowDiv)`
   border-bottom: 1px solid gray;
@@ -17,6 +17,7 @@ export const HeaderContainer = styled(FlexRowDiv)`
 export const AppContainer = styled(FlexColumnDiv)`
   overflow: scroll;
   width: 100%;
+  align-items: center;
 
   ::-webkit-scrollbar {
     display: none;
@@ -25,6 +26,7 @@ export const AppContainer = styled(FlexColumnDiv)`
 
 export const HomeContainer = styled(FlexColumnDiv)`
   margin-top: 6.5rem;
+  width: 150rem;
 `;
 
 export const LoginContainer = styled(FlexColumnDiv)`
@@ -82,4 +84,28 @@ export const ShopListItem = styled(FlexRowDiv)`
   border: 1px solid ${blackAndWhite[10]};
   border-radius: 1rem;
   padding: 1rem;
+`;
+
+export const BannerContainer = styled.div`
+  height: 35rem;
+  background-color: gray;
+  font-size: 10rem;
+`;
+
+export const CategoryContainer = styled(FlexRowDiv)`
+  height: 9rem;
+  margin-top: 1rem;
+
+  > img {
+    width: 7rem;
+    height: 7rem;
+    margin: 1rem 2rem 1rem 2rem;
+
+    &:hover {
+      width: 9rem;
+      height: 9rem;
+      margin: 0rem 1rem 0rem 1rem;
+      cursor: pointer;
+    }
+  }
 `;
