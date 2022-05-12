@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/kakaoLoginButton"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="@color/kakao"
+        android:text="KAKAO"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/naverLoginButton"
+        app:layout_constraintEnd_toEndOf="@+id/naverLoginButton"
+        app:layout_constraintStart_toStartOf="@+id/naverLoginButton" />
+
+    <Button
+        android:id="@+id/naverLoginButton"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/naver"
+        android:text="NAVER"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/googleLoginButton"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="@color/google"
+        android:text="GOOGLe"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/naverLoginButton"
+        app:layout_constraintStart_toStartOf="@+id/naverLoginButton"
+        app:layout_constraintTop_toBottomOf="@+id/naverLoginButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>
