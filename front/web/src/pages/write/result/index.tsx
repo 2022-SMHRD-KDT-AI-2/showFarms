@@ -14,7 +14,7 @@ interface IResultProps {
   price: string;
   unit: string;
   optionList: string[];
-  image: string | ArrayBuffer;
+  image: string;
 }
 
 const Result = ({
@@ -28,7 +28,7 @@ const Result = ({
   return (
     <ResultContainer>
       <PostHeader>
-        <PostItemImg src={image.toString()} />
+        <PostItemImg src={image} />
         <FlexColumnDiv>
           <TitleText>{title}</TitleText>
           <TitleText>{`${price} / ${unit}`}</TitleText>
