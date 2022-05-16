@@ -1,0 +1,15 @@
+# Gradle/build
+.gradle
+/build
+.externalNativeBuild
+.cxx
+
+# Intellij
+*.iml
+.idea/
+
+# Local file
+local.properties
+
+# Mac
+.DS_Store
