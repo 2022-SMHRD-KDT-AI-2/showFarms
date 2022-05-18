@@ -3,6 +3,7 @@ import { KaKaoMap, MapContainer } from "../../styles/layout";
 import ShopList from "../../components/shopList";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import Marker from "./marker";
+import Aside from "../../components/aside";
 
 export interface ICoord {
   lat: number;
@@ -73,6 +74,7 @@ export default function KakaoMap() {
 
   return (
     <MapContainer>
+      <Aside />
       {coord ? (
         <KaKaoMap>
           <Map

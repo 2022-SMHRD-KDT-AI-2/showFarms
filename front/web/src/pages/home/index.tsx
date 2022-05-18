@@ -2,20 +2,18 @@ import React from "react";
 import CardGrid from "../../components/cardGrid";
 import { HomeContainer } from "../../styles/layout";
 import { Banner } from "../../components/banner";
-import { Category } from "../../components/category";
+import Aside from "../../components/aside";
 
 const Home = () => {
   return (
-    <HomeContainer>
+    <>
+      <Aside />
       <Banner />
-      <Category />
-      <CardGrid category={"Live"} />
-      <CardGrid category={"Live"} />
-      <CardGrid category={"Live"} />
-      <CardGrid category={"Live"} />
-      <CardGrid category={"Live"} />
-      <CardGrid category={"Live"} />
-    </HomeContainer>
+      <HomeContainer>
+        <CardGrid category={"Live"} />
+        <CardGrid category={"판매상품"} />
+      </HomeContainer>
+    </>
   );
 };
 

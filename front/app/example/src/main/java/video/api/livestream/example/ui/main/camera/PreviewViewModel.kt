@@ -48,7 +48,8 @@ class PreviewViewModel(application: Application) : AndroidViewModel(application)
 
     fun startStream() {
         try {
-            liveStream.startStreaming(configuration.endpoint.streamKey, configuration.endpoint.url)
+            //liveStream.startStreaming(configuration.endpoint.streamKey, configuration.endpoint.url)
+            liveStream.startStreaming("test", "rtmp://192.168.9.174:1935/live")
         } catch (e: Exception) {
             onError.postValue(e.message)
         }

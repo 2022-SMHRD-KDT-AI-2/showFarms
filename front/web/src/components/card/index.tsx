@@ -3,11 +3,10 @@ import { FlexColumnDiv, FlexRowDiv } from "../../styles/common";
 import {
   CardContainer,
   CardContents,
-  CardDiscount,
   CardHeader,
   CardImg,
-  CardPrevPrice,
 } from "../../styles/element";
+import titleImg from "../../images/title_img.png";
 
 interface ICard {
   img: string;
@@ -21,16 +20,11 @@ interface ICard {
 const Card = ({ img, title, seller, discount, shipmentFee, price }: ICard) => {
   return (
     <CardContainer>
-      <CardImg src={img} />
+      <CardImg src={titleImg} />
       <FlexColumnDiv>
-        <CardContents>{seller}</CardContents>
+        <CardContents>판매자 : {seller}</CardContents>
         <CardHeader>{title}</CardHeader>
-        <FlexRowDiv>
-          <CardDiscount>{discount + "%"}</CardDiscount>
-          <CardPrevPrice>{price}</CardPrevPrice>
-          <CardContents>{"->"}</CardContents>
-          <CardContents>{(price * (100 - discount)) / 100}</CardContents>
-        </FlexRowDiv>
+        <CardContents>{(price * (100 - discount)) / 100}</CardContents>
         <CardContents>{shipmentFee}</CardContents>
       </FlexColumnDiv>
     </CardContainer>

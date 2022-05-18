@@ -16,25 +16,13 @@ export const Line = styled.div`
 
 export const GridBox = styled(FlexColumnDiv)`
   border: 1px solid gray;
-  width: 30rem;
-  height: 30rem;
+  width: 40rem;
+  height: 40rem;
   border-radius: 1.5rem;
   padding: 1rem;
   justify-content: center;
   align-items: center;
-  margin-top: 10rem;
-`;
-
-export const LoginButton = styled.button`
-  width: 20rem;
-  height: 4.5rem;
-  margin: 2rem 0 2rem 0;
-  background-color: ${(props) => props.color};
-  border-radius: 0.5rem;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
+  background-color: white;
 `;
 
 export const ColorDiv = styled.div`
@@ -51,4 +39,9 @@ export const TitleText = styled.p`
 export const MiddleText = styled.p`
   font-size: 1.5rem;
   margin-bottom: 1rem;
+`;
+
+export const BannerItem = styled.img`
+  height: 100%;
+  width: 90vw;
 `;
