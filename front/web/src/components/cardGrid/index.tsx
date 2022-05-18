@@ -6,7 +6,6 @@ import {
   CardGridHeader,
   GirdHeader,
   Link,
-  MoreView,
 } from "../../styles/element";
 import Card from "../card";
 
@@ -17,15 +16,7 @@ interface ICardGrid {
 const tempData = [
   {
     img: "",
-    title: "제목제목제목제목제목제목제목제목",
-    seller: "김덕순",
-    discount: 10,
-    price: 15000,
-    shipmentFee: "free",
-  },
-  {
-    img: "",
-    title: "제목제목제목제목제목제목제목제목",
+    title: "dfasdfasdfasd",
     seller: "김덕순",
     discount: 10,
     price: 15000,
