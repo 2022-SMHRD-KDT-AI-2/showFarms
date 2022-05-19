@@ -1,1 +1,5 @@
 /.idea/
+/deeplearning/.idea/
+/deeplearning/analysis/data/json/
+/deeplearning/main/wandb/
+/deeplearning/preprocessing/convert_code/deeplabv3_xception_tf_dim_ordering_tf_kernels.h5
