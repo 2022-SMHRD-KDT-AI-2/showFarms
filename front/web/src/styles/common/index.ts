@@ -43,5 +43,5 @@ export const MiddleText = styled.p`
 
 export const BannerItem = styled.img`
   height: 100%;
-  width: 90vw;
+  width: 100vw;
 `;
