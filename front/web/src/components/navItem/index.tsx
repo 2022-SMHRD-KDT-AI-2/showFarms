@@ -14,8 +14,6 @@ const NavItem = ({item, icon}: { item: string; icon: string }) => {
           <img src={icon}/>
           <div>{item.toUpperCase()}</div>
         </FlexRowDiv>
-
-
       </NavItemContainer>
   );
 };

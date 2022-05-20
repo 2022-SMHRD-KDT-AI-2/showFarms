@@ -52,15 +52,20 @@
     "@types/draftjs-to-html": "^0.8.1",
     "@types/loadable__component": "^5.13.4",
     "@types/react-draft-wysiwyg": "^1.13.4",
+    "@types/video.js": "^7.3.40",
     "axios": "^0.26.1",
     "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.1",
     "es6-shim": "^0.35.6",
+    "http-proxy-middleware": "^2.0.6",
     "prettier": "^2.6.2",
     "react-draft-wysiwyg": "^1.14.7",
+    "react-hls-player": "^3.0.7",
     "react-icons": "^4.3.1",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
-    "recoil": "^0.7.2"
+    "recoil": "^0.7.2",
+    "video.js": "^7.18.1",
+    "videojs-react-enhanced": "^0.3.1"
   }
 }

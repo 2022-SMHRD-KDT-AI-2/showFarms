@@ -55,7 +55,7 @@ export const ButtonSecond = styled.button`
 `;
 
 export const CardContainer = styled(FlexColumnDiv)`
-  width: 16vw;
+  width: 12vw;
   margin: 1vh;
 
   text {
@@ -65,7 +65,7 @@ export const CardContainer = styled(FlexColumnDiv)`
 
 export const CardImg = styled.img`
   width: 100%;
-  height: 40vh;
+  height: 30vh;
 `;
 
 export const CardHeader = styled.text`
@@ -113,7 +113,7 @@ export const Link = styled.a`
 `;
 
 export const AsideContainer = styled(FlexColumnDiv)`
-  width: 25vw;
+  width: 20vw;
   height: 100vh;
   align-items: center;
   background-color: #222222;
@@ -189,7 +189,7 @@ export const Logo = styled.img`
 `;
 
 export const IconImg = styled.img`
-  height: 5vh;
+  height: 3vh;
 `;
 
 export const SelectListContainer = styled.select`
@@ -219,7 +219,6 @@ export const NavItemContainer = styled.div`
   height: 6vh;
   width: 100%;
   font-size: 3vh;
-  margin: 0vh;
   color: white;
   font-weight: bold;
 
@@ -265,3 +264,14 @@ export const ArrowLeft = styled.img`
     height: 6.5vh;
   }
 `;
+
+export const MovieItem = styled.div`
+  width: 70vw;
+  height: 60vw;
+  margin-left: 6vw;
+  margin-top: 1vh;
+`;
+
+export const MovieInfo = styled.div``;
+
+export const MovieList = styled.div``;

@@ -6,7 +6,7 @@ import {
   CardHeader,
   CardImg,
 } from "../../styles/element";
-import titleImg from "../../images/title_img.png";
+import titleImg from "../../images/icons/title_img.png";
 
 interface ICard {
   img: string;

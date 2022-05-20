@@ -53,7 +53,10 @@ export const WriteContainer = styled(FlexColumnDiv)`
 
 export const MyPagesContainer = styled(FlexRowDiv)``;
 
-export const MovieContainer = styled(FlexColumnDiv)``;
+export const MovieContainer = styled(FlexRowDiv)`
+  width: 100vw;
+  height: 100vh;
+`;
 
 export const MapContainer = styled(FlexRowDiv)`
   width: 100vw;
@@ -101,9 +104,10 @@ export const ShopItemInfo = styled(FlexColumnDiv)`
 `;
 
 export const BannerContainer = styled.div`
-  height: 40vh;
+  height: 33vh;
   width: 100vw;
   text-align: center;
+  margin-top: 0.3vh;
 
   text {
     margin: 0.3vh;
@@ -189,7 +193,7 @@ export const LoginButton = styled.button`
 
 export const Navigator = styled.span`
   position: fixed;
-  left: 1vw;
-  top: 1vw;
+  left: 0.5vw;
+  top: 0.5vw;
   z-index: 100;
 `;
