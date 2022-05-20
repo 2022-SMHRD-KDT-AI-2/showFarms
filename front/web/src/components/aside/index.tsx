@@ -8,14 +8,14 @@ import {
 } from "../../styles/element";
 import { Navigator } from "../../styles/layout";
 import useInput from "../../hooks/useInput";
-import logo from "../../images/logo.png";
-import icon from "../../images/Hamberger_icon.png";
+import logo from "../../images/icons/logo.png";
+import icon from "../../images/icons/Hamberger_icon.png";
 import NavItem from "../navItem";
 import { linkList } from "../../datas";
-import main from "../../images/Main_icon.png";
-import map from "../../images/Map_icon.png";
-import setting from "../../images/Setting_icon.png";
-import write from "../../images/Write_icon.png";
+import main from "../../images/icons/Main_icon.png";
+import map from "../../images/icons/Map_icon.png";
+import setting from "../../images/icons/Setting_icon.png";
+import write from "../../images/icons/Write_icon.png";
 
 const icons = [main, write, map, setting];
 

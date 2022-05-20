@@ -9,7 +9,7 @@ import {
 import background from "../../images/background.jpeg";
 import { login } from "../../datas/color";
 import { loginTargetUrl } from "../../datas";
-import logo from "../../images/logo.png";
+import logo from "../../images/icons/logo.png";
 import { Logo } from "../../styles/element";
 import Aside from "../../components/aside";
 
