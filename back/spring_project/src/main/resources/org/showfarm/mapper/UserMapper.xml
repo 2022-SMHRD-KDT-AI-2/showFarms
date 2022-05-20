@@ -10,8 +10,8 @@
 
 	</insert>
 	
-	<select id="select" >
-		select mb_id from tbl_user
-		where (#{mb_id} = #{mb_id})
+	<select id="select" resultType="org.showfarm.domain.UserVO">
+		select * from tbl_user
+		where mb_id = #{mb_id}
 	</select>
  </mapper>

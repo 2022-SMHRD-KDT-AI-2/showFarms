@@ -85,13 +85,14 @@ public class LoginController {
 		vo.setToken(oauthToken.getAccessToken());
 		//String name = (String)response_obj.get("name");
 		//String mobile = (String)response_obj.get("mobile");
-		int register = service.register(vo);
+		//int register = service.register(vo);
 		
 		//session.setAttribute("sessionId",email); //技记 积己
 		model.addAttribute("result", apiResult);
-		String id = (String) response_obj.get("id");
-		
-		if(service.insertCheck(id) != 1) {
+		String id = vo.getMb_id();
+		System.out.println(id);
+		System.out.println(service.insertCheck(id));
+		if(service.insertCheck(id) == null) {
 			service.register(vo);
 		}
 		return "successNaver";
