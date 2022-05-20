@@ -37,6 +37,7 @@ h3 {
     <div
         style="background-color: #15a181; width: 100%; height: 50px; text-align: center; color: white;">
         <h3>SIST Naver_Login Success</h3>
+       <a href="/logout">로그아웃</a>
     </div>
     <br>
     <h2 style="text-align: center" id="name"></h2>
