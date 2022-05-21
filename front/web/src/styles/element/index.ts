@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { FlexColumnDiv, FlexRowDiv } from "../common";
-import { agriculture } from "../../datas/color";
+import {FlexColumnDiv, FlexRowDiv} from "../common";
+import {agriculture} from "../../datas/color";
 
 export const Input = styled.input`
   border-radius: 4px;
@@ -267,11 +267,14 @@ export const ArrowLeft = styled.img`
 
 export const MovieItem = styled.div`
   width: 70vw;
-  height: 60vw;
+  height: 90vw;
   margin-left: 6vw;
   margin-top: 1vh;
-`;
 
-export const MovieInfo = styled.div``;
+  > img {
+    width: 100%;
+    height: 75%
+  }
+`;
 
 export const MovieList = styled.div``;
