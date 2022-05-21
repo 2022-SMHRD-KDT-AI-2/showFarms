@@ -7,8 +7,8 @@ import org.showfarm.domain.TradeVO;
 public interface TradeService {
 	
 	public int register(TradeVO vo);
-	public TradeVO get(int post_id);
-	public int remove(int live_id);
+	public TradeVO get(int trade_id);
+	public int remove(int trade_id);
 	public List<TradeVO> getList();
 
 }
