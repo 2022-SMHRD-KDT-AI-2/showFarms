@@ -1,3 +1,0 @@
-include ':livestream'
-include ':example'
-rootProject.name = "live-stream"
