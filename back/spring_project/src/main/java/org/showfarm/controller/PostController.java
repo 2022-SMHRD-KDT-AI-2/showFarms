@@ -1,7 +1,11 @@
 package org.showfarm.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
+import org.showfarm.domain.PostAttachVO;
 import org.showfarm.domain.PostVO;
 import org.showfarm.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
@@ -33,6 +38,12 @@ public class PostController {
 	public ResponseEntity<String> create(@RequestBody PostVO vo) {
 
 		log.info("PostVO: " + vo);
+		
+		if (vo.getAttachList() != null) {
+
+			vo.getAttachList().forEach(attach -> log.info(attach));
+
+		}
 
 		int insertCount = service.register(vo);
 		log.info("Post INSERT COUNT: " + insertCount);
@@ -57,7 +68,13 @@ public class PostController {
 		
 		log.info("remove: " + post_id);
 		
-		return service.remove(post_id) == 1
+		List<PostAttachVO> attachList = service.getAttachList(post_id);
+		
+		if(service.remove(post_id)) {
+			deleteFiles(attachList);
+		}
+		
+		return service.remove(post_id)
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
@@ -90,6 +107,47 @@ public class PostController {
 
 		
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	private void deleteFiles(List<PostAttachVO> attachList) {
+	    
+	    if(attachList == null || attachList.size() == 0) {
+	      return;
+	    }
+	    
+	    log.info("delete attach files...................");
+	    log.info(attachList);
+	    
+	    attachList.forEach(attach -> {
+	      try {        
+	        Path file  = Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\" + attach.getUuid()+"_"+ attach.getFileName());
+	        
+	        Files.deleteIfExists(file);
+	        
+	        if(Files.probeContentType(file).startsWith("image")) {
+	        
+	          Path thumbNail = Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\s_" + attach.getUuid()+"_"+ attach.getFileName());
+	          
+	          Files.delete(thumbNail);
+	        }
+	
+	      }catch(Exception e) {
+	        log.error("delete file error" + e.getMessage());
+	      }//end catch
+	    });//end foreachd
+	  }
+
+	
+
+	@GetMapping(value = "/getAttachList",
+			    produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@ResponseBody
+	public ResponseEntity<List<PostAttachVO>> getAttachList(int post_id) {
+
+		log.info("getAttachList " + post_id);
+
+		return new ResponseEntity<>(service.getAttachList(post_id), HttpStatus.OK);
+
 	}
 	
 }

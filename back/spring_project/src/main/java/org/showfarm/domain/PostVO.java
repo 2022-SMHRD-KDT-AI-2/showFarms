@@ -1,5 +1,7 @@
 package org.showfarm.domain;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -13,5 +15,6 @@ public class PostVO {
 	private int post_price;
 	private Long post_discount;
 	private String post_dt;
- 
+
+	private List<PostAttachVO> attachList;
 }
