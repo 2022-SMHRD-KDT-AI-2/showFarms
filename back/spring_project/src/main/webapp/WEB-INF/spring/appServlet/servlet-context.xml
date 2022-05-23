@@ -21,7 +21,14 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.testproject.app" />
+	<beans:bean id="naverLoginBO" class="org.showfarm.domain.NaverLoginBO"/>
+	<beans:bean id="userVO" class="org.showfarm.domain.UserVO"/>
+	
+	<context:component-scan base-package="org.showfarm.controller" />
+	
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+		</beans:bean>
 	
 	
 	
