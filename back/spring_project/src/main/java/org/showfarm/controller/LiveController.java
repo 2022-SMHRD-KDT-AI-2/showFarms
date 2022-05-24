@@ -32,10 +32,10 @@ public class LiveController {
 	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> create(@RequestBody LiveVO vo) {
 
-		log.info("PostVO: " + vo);
+		log.info("LiveVO: " + vo);
 
 		int insertCount = service.register(vo);
-		log.info("Post INSERT COUNT: " + insertCount);
+		log.info("Live INSERT COUNT: " + insertCount);
 
 		return insertCount == 1  
 				?  new ResponseEntity<>("success", HttpStatus.OK)

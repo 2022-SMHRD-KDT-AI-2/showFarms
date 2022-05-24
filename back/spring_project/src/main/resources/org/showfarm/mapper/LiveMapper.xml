@@ -12,9 +12,9 @@
   
   	<select id="read" resultType="org.showfarm.domain.LiveVO">
 
-		select * from tbl_live where live_id =
-		#{live_id}
-
+		select * from tbl_live, tbl_post where tbl_post.post_id = tbl_live.post_id
+		and tbl_live.live_id = #{live_id};
+		
 	</select>
 	
 	<delete id="delete">
