@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="org.showfarm.mapper.VideoMapper">
+  	<insert id="insert" parameterType="org.showfarm.domain.VideoVO">
+
+		insert into tbl_video (video_id, video_name, post_id)
+		values (tbl_video_seq.nextval, #{video_name}, #{post_id})
+
+	</insert>
+  
+  	<select id="read" resultType="org.showfarm.domain.VideoVO">
+
+		select * from tbl_video where video_id =
+		#{video_id}
+
+	</select>
+	
+	<delete id="delete">
+
+		delete from tbl_video where video_id = #{video_id}
+
+	</delete>
+	
+	
+  </mapper>
