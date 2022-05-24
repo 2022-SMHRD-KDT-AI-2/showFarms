@@ -14,17 +14,6 @@ export const Line = styled.div`
   border: 1px solid gray;
 `;
 
-export const GridBox = styled(FlexColumnDiv)`
-  border: 1px solid gray;
-  width: 40rem;
-  height: 40rem;
-  border-radius: 1.5rem;
-  padding: 1rem;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-`;
-
 export const ColorDiv = styled.div`
   height: 5rem;
   background-color: ${(props) => props.color};
@@ -43,5 +32,5 @@ export const MiddleText = styled.p`
 
 export const BannerItem = styled.img`
   height: 100%;
-  width: 100vw;
+  width: 1430px;
 `;

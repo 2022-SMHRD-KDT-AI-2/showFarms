@@ -8,24 +8,25 @@ export const Input = styled.input`
   box-sizing: border-box;
   color: black;
   background-color: white;
-  padding: 1vh;
-  height: 5vh;
-  font-size: 2.5vh;
+  padding: 0.5rem;
+  height: 2.8rem;
+  font-size: 2rem;
   line-height: 1.33333333;
   width: ${(props) => props.width};
 `;
 
 export const Button = styled.button`
-  border-radius: 0.5vh;
-  height: 5vh;
-  width: 5vw;
+  border-radius: 0.3rem;
+  height: 2.8rem;
+  width: fit-content;
   text-align: center;
   margin-left: 0.3vh;
   color: white;
   font-weight: 1;
-  font-size: 2.5vh;
+  font-size: 1.5rem;
   background-color: rgb(164, 203, 115);
   border: 1px solid ${agriculture[1]};
+  padding: 2px;
 
   &:hover {
     background-color: ${agriculture[1]};
@@ -55,47 +56,56 @@ export const ButtonSecond = styled.button`
 `;
 
 export const CardContainer = styled(FlexColumnDiv)`
-  width: 12vw;
-  margin: 1vh;
+  width: 23%;
+  margin: 1rem;
+
 
   text {
     margin: 0.3vh;
   }
-`;
 
-export const CardImg = styled.img`
-  width: 100%;
-  height: 30vh;
+  &:hover {
+    cursor: pointer;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  > img {
+    width: 100%;
+    height: 400px;
+    border-radius: 0.5rem;
+  }
 `;
 
 export const CardHeader = styled.text`
-  font-size: 2vh;
-  font-weight: 1;
+  font-size: 1.7rem;
+  font-weight: bold;
 `;
 
 export const CardContents = styled.text`
-  font-size: 1.5vh;
+  font-size: 1.2rem;
   text-overflow: ellipsis;
 `;
 export const CardGridContainer = styled(FlexColumnDiv)`
-  margin: 1vh;
+  margin: 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
 
 export const CardGridHeader = styled(FlexRowDiv)`
-  font-size: 3vh;
+  font-size: 3rem;
   font-weight: bold;
-  padding: 1vh;
+  padding: 0.7rem;
+  margin-left: 1.2rem;
 `;
 
 export const CardGridContents = styled(FlexRowDiv)`
   width: 100%;
   flex-wrap: wrap;
   justify-content: center;
-
-  ::-webkit-scrollbar {
-    display: none;
-  }
+  height: fit-content;
 `;
 
 export const Link = styled.a`
@@ -138,15 +148,6 @@ export const SellerContainer = styled(FlexColumnDiv)`
 `;
 
 export const CustomerContainer = styled(FlexColumnDiv)``;
-
-export const PostItemImg = styled.img`
-  width: 40rem;
-  height: 40rem;
-  border-radius: 1rem;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  margin: 1rem;
-  font-size: 2vh;
-`;
 
 export const PostItemInfo = styled(FlexColumnDiv)`
   margin: 1rem;
@@ -193,47 +194,13 @@ export const IconImg = styled.img`
 `;
 
 export const SelectListContainer = styled.select`
-  width: 40%;
-  height: 5vh;
+  width: 20rem;
+  height: 2.8rem;
   border: 1px solid rgba(0, 0, 0, 0.3);
   background-color: white;
-  font-size: 2vh;
+  font-size: 2rem;
   padding-left: 1vh;
   color: rgba(0, 0, 0, 0.55);
-`;
-
-export const WriteHeader = styled.div`
-  position: fixed;
-  right: 5vw;
-  top: 5vh;
-  width: 13vw;
-  height: 6vh;
-  display: flex;
-  justify-content: space-between;
-`;
-
-export const NavItemContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 6vh;
-  width: 100%;
-  font-size: 3vh;
-  color: white;
-  font-weight: bold;
-
-  &:hover {
-    background-color: ${agriculture[5]};
-  }
-
-  > div {
-    margin-left: 3vw;
-  }
-
-  img {
-    height: 3vh;
-    margin-right: 1vw;
-  }
 `;
 
 export const ArrowRight = styled.img`
@@ -266,14 +233,41 @@ export const ArrowLeft = styled.img`
 `;
 
 export const MovieItem = styled.div`
-  width: 70vw;
-  height: 90vw;
-  margin-left: 6vw;
-  margin-top: 1vh;
+  > * {
+    margin: 1rem
+  }
 
   > img {
-    width: 100%;
-    height: 75%
+    width: 1600px;
+    height: 900px
+  }
+
+  .size1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  .size2 {
+    font-size: 2.2rem;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    text {
+      margin: 1rem
+    }
+  }
+
+  .space1 {
+    justify-content: space-between;
+
+    > button {
+      width: 10rem;
+      height: 4rem;
+    }
   }
 `;
 

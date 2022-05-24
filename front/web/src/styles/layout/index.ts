@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import { FlexColumnDiv, FlexRowDiv } from "../common";
-import { agriculture, blackAndWhite } from "../../datas/color";
+import {FlexColumnDiv, FlexRowDiv} from "../common";
+import {agriculture, blackAndWhite} from "../../datas/color";
 
 export const AppContainer = styled(FlexColumnDiv)`
   overflow: scroll;
@@ -13,16 +13,25 @@ export const AppContainer = styled(FlexColumnDiv)`
 `;
 
 export const HomeContainer = styled(FlexColumnDiv)`
-  width: 70vw;
+  width: 1500px;
   background-color: white;
 `;
 
 export const PostContainer = styled(FlexColumnDiv)``;
 
 export const WriteContainer = styled(FlexColumnDiv)`
-  width: 100vw;
-  overflow: scroll;
   align-items: center;
+  overflow: auto;
+  height: 1000px;
+  min-width: 1000px;
+
+  > img {
+    width: 300px;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    font-size: 2rem;
+  }
 
   text {
     font-size: 2vh;
@@ -33,29 +42,52 @@ export const WriteContainer = styled(FlexColumnDiv)`
   }
 
   > span {
-    width: 40%;
+    width: 80rem;
     display: flex;
     flex-direction: column;
     margin: 1vh;
+    justify-content: center;
+    align-items: center;
 
     > * {
       margin: 1vh;
     }
+
+    text {
+      width: 7rem;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: row;
+      width: 60rem;
+    }
   }
 
   .editor {
-    height: 80vh;
-    padding: 0.5vh;
-    font-size: 1.5vh;
+    height: 500px;
+    padding: 1rem;
+    font-size: 2rem;
     border: 1px solid rgba(0, 0, 0, 0.3);
+  }
+
+  > div > button {
+    width: 7rem;
+    height: 4rem;
+    font-size: 2rem;
+    margin: 1rem;
   }
 `;
 
-export const MyPagesContainer = styled(FlexRowDiv)``;
+export const MyPagesContainer = styled(FlexRowDiv)`
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+`;
 
 export const MovieContainer = styled(FlexRowDiv)`
-  width: 100vw;
-  height: 100vh;
+
 `;
 
 export const MapContainer = styled(FlexRowDiv)`
@@ -84,7 +116,7 @@ export const ShopListItem = styled(FlexRowDiv)`
   width: 23vw;
 
   &:hover {
-    background-color: rgba(164, 116, 68, 0.4);
+    background-color: rgba(164, 116, 68, 0.2);
   }
 `;
 
@@ -104,10 +136,10 @@ export const ShopItemInfo = styled(FlexColumnDiv)`
 `;
 
 export const BannerContainer = styled.div`
-  height: 33vh;
+  height: 30rem;
   width: 100vw;
   text-align: center;
-  margin-top: 0.3vh;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 
   text {
     margin: 0.3vh;
@@ -134,8 +166,6 @@ export const CategoryContainer = styled(FlexRowDiv)`
 export const StartContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  min-width: 1600px;
-  min-height: 900px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -153,13 +183,12 @@ export const LoginBackground = styled.div`
   display: flex;
   flex-direction: column;
   background-color: white;
-  border-radius: 5%;
-  height: 70%;
+  height: 100%;
   width: 30%;
   border: none;
   z-index: 1;
   position: absolute;
-  right: 10%;
+  right: 0;
   opacity: 0.3;
   justify-content: center;
   align-items: center;
@@ -168,13 +197,12 @@ export const LoginBackground = styled.div`
 export const LoginBackgroundWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  border-radius: 5%;
-  height: 70%;
+  height: 100%;
   width: 30%;
   border: none;
   z-index: 2;
   position: absolute;
-  right: 10%;
+  right: 0;
   justify-content: center;
   align-items: center;
 `;
@@ -197,3 +225,110 @@ export const Navigator = styled.span`
   top: 0.5vw;
   z-index: 100;
 `;
+
+export const TableContainer = styled.div`
+  text-align: center;
+
+  table {
+    border-collapse: collapse;
+  }
+
+  th {
+    font-size: 2.5rem;
+    padding: 1vh;
+  }
+
+  tr {
+    font-size: 2.2rem;
+    border-top: 1px solid rgb(222, 222, 222);
+  }
+
+  .width1 {
+    width: 15rem;
+  }
+
+  .width2 {
+    width: 30rem;
+  }
+
+  .width3 {
+    width: 3rem;
+  }
+
+  .width4 {
+    width: 8rem;
+  }
+`
+
+export const ModalBackground = styled.div`
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  margin: 0;
+`
+
+export const ModalContainer = styled.div`
+  position: absolute;
+  box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+  padding: 3rem;
+  background-color: white;
+  border: none;
+  border-radius: 3rem;
+  z-index: 6;
+  overflow: auto;
+`
+
+export const HeaderContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: sticky;
+  width: 100%;
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  justify-content: center;
+
+  h1 {
+    font-size: 2.3rem;
+    margin: 0 1.5rem 0 1.5rem;
+  }
+
+  span {
+    font-size: 1.3rem;
+    margin: 0 1.5rem 0 1.5rem;
+    width: 7rem;
+    text-align: center;
+
+    &:hover {
+      color: ${agriculture[3]};
+      height: 100%;
+      cursor: pointer;
+    }
+  }
+
+  img {
+    height: 3rem;
+    margin-left: 3rem;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 1500px;
+  }
+
+  > div > div {
+    display: flex;
+    flex-direction: row;
+  }
+`
