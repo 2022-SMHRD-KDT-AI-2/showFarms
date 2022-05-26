@@ -147,6 +147,18 @@ public class PostController {
 		return new ResponseEntity<>(service.getList(), HttpStatus.OK);
 	}
 	
+	
+	@GetMapping(value = "/{keyword}",
+			produces = {MediaType.APPLICATION_ATOM_XML_VALUE,
+						MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<PostVO>> search(@PathVariable("keyword") String keyword){
+	
+		log.info("get: " + keyword);
+		
+		return new ResponseEntity<>(service.search(keyword), HttpStatus.OK);
+	}
+	
+	
 
 	
 }

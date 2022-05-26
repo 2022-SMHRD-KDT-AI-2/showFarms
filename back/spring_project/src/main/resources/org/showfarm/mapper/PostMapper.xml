@@ -14,6 +14,7 @@
 
 		select * from tbl_post, tbl_video where  tbl_post.post_id = tbl_video.post_id 
 		and tbl_post.post_id = #{post_id}
+		
 
 	</select>
 	
@@ -37,4 +38,14 @@
 		select * from tbl_post order by post_id desc
 
 	</select>
+	
+	<select id="search" resultType="org.showfarm.domain.PostVO">
+
+		<!-- select * from tbl_post, tbl_video where  tbl_post.post_id = tbl_video.post_id 
+		and tbl_post.post_id = #{post_id} -->
+		select * from tbl_post where post_title like '%'||#{keyword}||'%'  
+
+	</select>
+	
+	
   </mapper>

@@ -6,7 +6,7 @@
   	<insert id="insert" parameterType="org.showfarm.domain.UserVO">
 
 		insert into tbl_user (mb_id, mb_name, mb_type, mb_lati, mb_longi,mb_pw)
-		values (#{mb_id}, #{mb_name}, 0,0, 0, #{mb_pw})
+		values (#{mb_id}, #{mb_name}, 0, #{mb_lati}, #{mb_longi}, #{mb_pw})
 
 	</insert>
 	

@@ -12,6 +12,6 @@ public interface PostService {
 	public int modify(PostVO vo);
 	public boolean remove(int post_id);
 	public List<PostVO> getList();
-	
+	public List<PostVO> search(String keyword);
 	
 }

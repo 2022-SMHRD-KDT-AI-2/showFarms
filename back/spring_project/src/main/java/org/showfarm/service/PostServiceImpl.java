@@ -61,6 +61,16 @@ public class PostServiceImpl implements PostService{
 		return mapper.getList();
 	}
 	
+	@Override
+	public List<PostVO> search(String keyword) {
+
+		log.info("get........." + keyword);
+		return mapper.search(keyword);
+	}
+
+
+	
+	
 
 
 }

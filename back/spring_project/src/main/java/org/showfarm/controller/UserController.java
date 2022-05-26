@@ -37,14 +37,14 @@ public class UserController {
 		log.info("User INSERT COUNT: " + insertCount);
 
 		return insertCount == 1  
-				?  new ResponseEntity<>("success", HttpStatus.OK)
+				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
 	@PostMapping(value = "/login",
 			produces = {MediaType.APPLICATION_ATOM_XML_VALUE,
 						MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<UserVO> login(@RequestBody UserVO vo) {
+	public ResponseEntity<Boolean> login(@RequestBody UserVO vo) {
 		
 //		UserVO vo = new UserVO();
 //		
@@ -53,9 +53,10 @@ public class UserController {
 		
 		UserVO idCheck = service.insertCheck(vo);
 		log.info(vo);
+		
 		return idCheck != null  
-				?  new ResponseEntity<>(HttpStatus.OK)
-				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+				?  new ResponseEntity<>(true,HttpStatus.OK)
+				: new ResponseEntity<>(false,HttpStatus.OK);
 		
 		
 	}
