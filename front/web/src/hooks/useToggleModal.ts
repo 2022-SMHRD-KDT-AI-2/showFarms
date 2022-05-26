@@ -1,16 +1,21 @@
-import {Dispatch, SetStateAction, useState} from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
-type Return = [boolean, Dispatch<SetStateAction<boolean>>, () => void, () => void]
+type Return = [
+  boolean,
+  Dispatch<SetStateAction<boolean>>,
+  () => void,
+  () => void
+];
 
-const useToggleModal = (): Return => {
-    const [view, setView] = useState<boolean>(false)
-    const openView = () => {
-        setView(true)
-    }
-    const closeView = () => {
-        setView(false)
-    }
-    return [view, setView, openView, closeView]
-}
+const useToggleModal = (init?: boolean): Return => {
+  const [view, setView] = useState<boolean>(!!init);
+  const openView = () => {
+    setView(true);
+  };
+  const closeView = () => {
+    setView(false);
+  };
+  return [view, setView, openView, closeView];
+};
 
-export default useToggleModal
+export default useToggleModal;

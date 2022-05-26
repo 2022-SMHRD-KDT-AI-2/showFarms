@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import {FlexColumnDiv, FlexRowDiv} from "../common";
-import {agriculture, blackAndWhite} from "../../datas/color";
+import { FlexColumnDiv, FlexRowDiv } from "../common";
+import { agriculture, blackAndWhite } from "../../datas/color";
 
 export const AppContainer = styled(FlexColumnDiv)`
   overflow: scroll;
@@ -17,7 +17,28 @@ export const HomeContainer = styled(FlexColumnDiv)`
   background-color: white;
 `;
 
-export const PostContainer = styled(FlexColumnDiv)``;
+export const PostContainer = styled(FlexColumnDiv)`
+  img {
+    height: 30rem;
+  }
+
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button {
+    width: 8rem;
+  }
+
+  font-size: 1.7rem;
+
+  .size1 {
+    font-size: 2.2rem;
+    margin: 0.5rem;
+  }
+`;
 
 export const WriteContainer = styled(FlexColumnDiv)`
   align-items: center;
@@ -86,9 +107,7 @@ export const MyPagesContainer = styled(FlexRowDiv)`
   justify-content: center;
 `;
 
-export const MovieContainer = styled(FlexRowDiv)`
-
-`;
+export const MovieContainer = styled(FlexRowDiv)``;
 
 export const MapContainer = styled(FlexRowDiv)`
   width: 100vw;
@@ -189,7 +208,7 @@ export const LoginBackground = styled.div`
   z-index: 1;
   position: absolute;
   right: 0;
-  opacity: 0.3;
+  opacity: 0.1;
   justify-content: center;
   align-items: center;
 `;
@@ -208,14 +227,14 @@ export const LoginBackgroundWrapper = styled.div`
 `;
 
 export const LoginButton = styled.button`
-  width: 60%;
-  height: 10%;
+  width: 20rem;
+  height: 5rem;
   margin: 1.5vw 0 1.5vw 0;
-  background-color: ${(props) => props.color};
+  background-color: ${agriculture[3]};
   border-radius: 0.5rem;
   border: none;
   color: white;
-  font-size: 1.7vw;
+  font-size: 2.5rem;
   font-weight: bold;
 `;
 
@@ -258,7 +277,7 @@ export const TableContainer = styled.div`
   .width4 {
     width: 8rem;
   }
-`
+`;
 
 export const ModalBackground = styled.div`
   display: flex;
@@ -272,7 +291,7 @@ export const ModalBackground = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 5;
   margin: 0;
-`
+`;
 
 export const ModalContainer = styled.div`
   position: absolute;
@@ -283,7 +302,7 @@ export const ModalContainer = styled.div`
   border-radius: 3rem;
   z-index: 6;
   overflow: auto;
-`
+`;
 
 export const HeaderContainer = styled.div`
   display: flex;
@@ -321,14 +340,40 @@ export const HeaderContainer = styled.div`
 
   > div {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     width: 1500px;
   }
+`;
 
-  > div > div {
+export const StartGrid = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const AddInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5rem;
+
+  * {
+    margin: 0.5rem;
+  }
+
+  > div {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
-`
+
+  button {
+    width: 8rem;
+  }
+
+  p {
+    color: rgba(255, 0, 0, 0.8);
+  }
+`;

@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {TableContainer} from "../../../styles/layout";
+import axiosInstance from "../../../utils/AxiosInstance";
 
 interface ITable {
     no: number,
@@ -8,100 +9,40 @@ interface ITable {
     seller: string,
     buyer: string,
     amount: number,
-    price: number,
-    total: number
+    price: number
 }
 
-const Table: React.FC = () => {
-    const data = [{
-        no: 1,
-        date: Date().toString().slice(0, 24),
-        title: "사과",
-        seller: "ㅁㄴㅇㄹ",
-        buyer: "ㅁㄴㅇㄹ",
-        amount: 10,
-        price: 1000,
-        total: 10000
-    }, {
-        no: 1,
-        date: Date().toString().slice(0, 24),
-        title: "사과",
-        seller: "ㅁㄴㅇㄹ",
-        buyer: "ㅁㄴㅇㄹ",
-        amount: 10,
-        price: 1000,
-        total: 10000
-    }, {
-        no: 1,
-        date: Date().toString().slice(0, 24),
-        title: "사과",
-        seller: "ㅁㄴㅇㄹ",
-        buyer: "ㅁㄴㅇㄹ",
-        amount: 10,
-        price: 1000,
-        total: 10000
-    }, {
-        no: 1,
-        date: Date().toString().slice(0, 24),
-        title: "사과",
-        seller: "ㅁㄴㅇㄹ",
-        buyer: "ㅁㄴㅇㄹ",
-        amount: 10,
-        price: 1000,
-        total: 10000
-    }, {
-        no: 1,
-        date: Date().toString().slice(0, 24),
-        title: "사과",
-        seller: "ㅁㄴㅇㄹ",
-        buyer: "ㅁㄴㅇㄹ",
-        amount: 10,
-        price: 1000,
-        total: 10000
-    }, {
-        no: 1,
-        date: Date().toString().slice(0, 24),
-        title: "사과",
-        seller: "ㅁㄴㅇㄹ",
-        buyer: "ㅁㄴㅇㄹ",
-        amount: 10,
-        price: 1000,
-        total: 10000
-    }, {
-        no: 1,
-        date: Date().toString().slice(0, 24),
-        title: "사과",
-        seller: "ㅁㄴㅇㄹ",
-        buyer: "ㅁㄴㅇㄹ",
-        amount: 10,
-        price: 1000,
-        total: 10000
-    }]
+const Table = ({data}: { data: ITable[] }) => {
     return (
         <TableContainer>
             <table>
+                <thead>
                 <tr>
                     <th className="width3">No</th>
-                    <th className="width1">date</th>
-                    <th className="width2">post title</th>
-                    <th className="width4">seller</th>
-                    <th className="width4">buyer</th>
-                    <th className="width4">amount</th>
-                    <th className="width4">price</th>
-                    <th className="width1">total price</th>
+                    <th className="width1">거래일자</th>
+                    <th className="width2">상품명</th>
+                    <th className="width4">판매자</th>
+                    <th className="width4">구매자</th>
+                    <th className="width4">거래량</th>
+                    <th className="width4">단가</th>
+                    <th className="width1">총금액</th>
                 </tr>
+                </thead>
                 {
-                    data.map((item, index) => {
-                        return <tr>
-                            <td>{item.no}</td>
-                            <td>{item.date}</td>
-                            <td>{item.title}</td>
-                            <td>{item.seller}</td>
-                            <td>{item.buyer}</td>
-                            <td>{item.amount}</td>
-                            <td>{item.price}</td>
-                            <td>{item.total}</td>
-                        </tr>
+                    data.length >= 1 && data.map((item, index) => {
+                        return (
+                            <tbody key={index}>
+                            <tr>
+                                <td>{item.no}</td>
+                                <td>{1}</td>
+                                <td>{item.title}</td>
+                                <td>{item.seller}</td>
+                                <td>{item.buyer}</td>
+                                <td>{item.amount}</td>
+                                <td>{item.price}</td>
+                                <td>{1}</td>
+                            </tr>
+                            </tbody>)
                     })
                 }
             </table>

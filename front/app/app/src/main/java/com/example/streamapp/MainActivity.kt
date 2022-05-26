@@ -33,17 +33,11 @@ class MainActivity : AppCompatActivity() {
         }
         hideSystemUI(window)
 
-        buttonArr =
-            arrayOf(binding.buttonLoginKakao, binding.buttonLoginNaver, binding.buttonLoginGoogle)
-        buttonArr.forEachIndexed { index, button ->
-            run {
-                button.setOnClickListener {
-                    Log.i("url", targetUrlArr[index])
-                    val intent: Intent = Intent(this@MainActivity, SalesListActivity::class.java)
-                    startActivity(intent)
-                }
-            }
+        binding.ButtonLogin.setOnClickListener {
+            val intent: Intent = Intent(this@MainActivity, SalesListActivity::class.java)
+            startActivity(intent)
         }
+
     }
     private fun hasPermissions(context: Context?, vararg permissions: String): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && context != null && permissions != null) {

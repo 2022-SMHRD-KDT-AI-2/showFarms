@@ -1,4 +1,4 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {FlexRowDiv, Line} from "../../styles/common";
 import {
     CardGridContainer,
@@ -8,6 +8,7 @@ import {
     Link,
 } from "../../styles/element";
 import Card from "../card";
+import axiosInstance from "../../utils/AxiosInstance";
 
 interface ICardGrid {
     category: string;
@@ -48,7 +49,31 @@ const tempData = [
     },
 ];
 
+interface IPost {
+    mb_id: string,
+    post_title: string,
+    post_content: string,
+    post_price: number,
+    post_unit: string,
+    post_category: string,
+    post_shipping: string,
+    post_dt: string,
+    post_base64: string,
+    post_img: string,
+    post_id: number
+}
+
 const CardGrid = ({category}: ICardGrid) => {
+    const [post, setPost] = useState<IPost[]>([])
+    const getAllPost = () => {
+        axiosInstance.get("/posts/list").then((res) => {
+            setPost(res.data)
+            console.log(res.data)
+        })
+    }
+    useEffect(() => {
+        getAllPost()
+    }, [])
     return (
         <CardGridContainer>
             <GirdHeader>
@@ -56,15 +81,18 @@ const CardGrid = ({category}: ICardGrid) => {
                 <Link>더보기</Link>
             </GirdHeader>
             <CardGridContents>
-                {tempData.map((item, index) => {
+                {post.map((item, index) => {
                     return (
                         <Card
-                            title={item.title}
-                            img={item.img}
-                            seller={item.seller}
-                            discount={item.discount}
-                            price={item.price}
-                            shipmentFee={item.shipmentFee}
+                            title={item.post_title}
+                            img={item.post_img}
+                            seller={item.mb_id}
+                            price={item.post_price}
+                            shipmentFee={item.post_shipping}
+                            contents={item.post_content}
+                            category={item.post_category}
+                            unit={item.post_unit}
+                            postId={item.post_id}
                             key={index}
                         />
                     );
