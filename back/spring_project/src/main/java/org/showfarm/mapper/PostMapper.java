@@ -11,4 +11,5 @@ public interface PostMapper {
 	public int delete(int post_id);
 	public int update(PostVO vo);
 	public List<PostVO> getList();
+	public List<PostVO> search(String keyword);
 }

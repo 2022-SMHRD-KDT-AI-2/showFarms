@@ -1,19 +1,20 @@
 package org.showfarm.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.zip.Deflater;
 
-import org.showfarm.domain.AttachFileDTO;
+import org.apache.commons.io.FileUtils;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -21,24 +22,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import net.coobird.thumbnailator.Thumbnailator;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @Log4j
+@AllArgsConstructor
 public class UploadController {
-
-
-
-	
 	private String getFolder() {
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -49,8 +49,6 @@ public class UploadController {
 
 		return str.replace("-", File.separator);
 	}
-
-
 
 	private boolean checkImageType(File file) {
 
@@ -67,67 +65,100 @@ public class UploadController {
 		return false;
 	}
 
-
-	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ResponseBody
-	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(@RequestParam MultipartFile[] uploadFile) {
-
-		List<AttachFileDTO> list = new ArrayList<>();
-		String uploadFolder = "C:\\upload";
-
-		String uploadFolderPath = getFolder();
-		// make folder --------
-		File uploadPath = new File(uploadFolder, uploadFolderPath);
-
-		if (uploadPath.exists() == false) {
-			uploadPath.mkdirs();
+	@PostMapping(value = "/uploadAjaxAction", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
+	public String uploadAjaxPost(@RequestBody String completeImageData){
+		log.info(completeImageData);
+		
+		String imageDataBytes = completeImageData.substring(completeImageData.indexOf(",")+1);
+		
+		
+		String encodedString = Base64.getEncoder().encodeToString(imageDataBytes.getBytes());
+		byte[] decodedBytes = Base64.getDecoder().decode(encodedString);
+		try {
+			FileUtils.writeByteArrayToFile(new File("test.png"), decodedBytes);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		// make yyyy/MM/dd folder
-
-		for (MultipartFile multipartFile : uploadFile) {
-
-			AttachFileDTO attachDTO = new AttachFileDTO();
-
-			String uploadFileName = multipartFile.getOriginalFilename();
-
-			// IE has file path
-			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
-			log.info("only file name: " + uploadFileName);
-			attachDTO.setFileName(uploadFileName);
-
-			UUID uuid = UUID.randomUUID();
-
-			uploadFileName = uuid.toString() + "_" + uploadFileName;
-
-			try {
-				File saveFile = new File(uploadPath, uploadFileName);
-				multipartFile.transferTo(saveFile);
-
-				attachDTO.setUuid(uuid.toString());
-				attachDTO.setUploadPath(uploadFolderPath);
-
-				// check image type file
-				if (checkImageType(saveFile)) {
-
-					attachDTO.setImage(true);
-
-					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-
-					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100, 100);
-
-					thumbnail.close();
-				}
-
-				// add to List
-				list.add(attachDTO);
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
-		} // end for
-		return new ResponseEntity<>(list, HttpStatus.OK);
+		return "success";
 	}
+	
+
+//	@ResponseBody
+//	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(@RequestParam(value = "File", required = false) MultipartFile uploadFile) {	
+//		log.info(uploadFile);
+//		/*
+//		 * List<AttachFileDTO> list = new ArrayList<>(); String uploadFolder =
+//		 * "C:\\upload";
+//		 * 
+//		 * String uploadFolderPath = getFolder(); // make folder -------- File
+//		 * uploadPath = new File(uploadFolder, uploadFolderPath);
+//		 * 
+//		 * if (uploadPath.exists() == false) { uploadPath.mkdirs(); } // make yyyy/MM/dd
+//		 * folder
+//		 * 
+//		 * for (MultipartFile multipartFile : uploadFile) {
+//		 * 
+//		 * AttachFileDTO attachDTO = new AttachFileDTO();
+//		 * 
+//		 * String uploadFileName = multipartFile.getOriginalFilename();
+//		 * 
+//		 * // IE has file path uploadFileName =
+//		 * uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
+//		 * log.info("only file name: " + uploadFileName);
+//		 * attachDTO.setFileName(uploadFileName);
+//		 * 
+//		 * UUID uuid = UUID.randomUUID();
+//		 * 
+//		 * uploadFileName = uuid.toString() + "_" + uploadFileName;
+//		 * 
+//		 * try { File saveFile = new File(uploadPath, uploadFileName);
+//		 * multipartFile.transferTo(saveFile);
+//		 * 
+//		 * attachDTO.setUuid(uuid.toString());
+//		 * attachDTO.setUploadPath(uploadFolderPath);
+//		 * 
+//		 * // check image type file if (checkImageType(saveFile)) {
+//		 * 
+//		 * attachDTO.setImage(true);
+//		 * 
+//		 * FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" +
+//		 * uploadFileName));
+//		 * 
+//		 * Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100,
+//		 * 100);
+//		 * 
+//		 * thumbnail.close(); }
+//		 * 
+//		 * // add to List list.add(attachDTO);
+//		 * 
+//		 * } catch (Exception e) { e.printStackTrace(); }
+//		 * 
+//		 * } // end for ;
+//		 */
+//		return new ResponseEntity<>(null, HttpStatus.OK);
+//	}
+	
+	
+	public static byte[] compressBytes(byte[] data) {
+        Deflater deflater = new Deflater();
+        deflater.setInput(data);
+        deflater.finish();
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
+        byte[] buffer = new byte[1024];
+        while (!deflater.finished()) {
+            int count = deflater.deflate(buffer);
+            outputStream.write(buffer, 0, count);
+
+            try {
+                outputStream.close();
+            } catch (IOException e) {
+            }
+        }
+        return outputStream.toByteArray();
+    }
 
 	@GetMapping("/display")
 	@ResponseBody

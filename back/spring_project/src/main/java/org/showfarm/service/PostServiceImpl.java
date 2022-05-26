@@ -19,23 +19,14 @@ public class PostServiceImpl implements PostService{
 	@Setter(onMethod_ = @Autowired )
 	private PostMapper mapper;
 	
-	@Setter(onMethod_ = @Autowired)
-	private PostAttachMapper attachMapper;
+
 	
 	@Override
 	public int register(PostVO vo) {
 
 		log.info("register........" + vo);
 		
-		if (vo.getAttachList() == null || vo.getAttachList().size() <= 0) {
-			return mapper.insert(vo);
-		}
 
-		vo.getAttachList().forEach(attach -> {
-
-			attach.setPost_id(vo.getPost_id());
-			attachMapper.insert(attach);
-		});
 		return mapper.insert(vo);
 	}
 
@@ -51,15 +42,7 @@ public class PostServiceImpl implements PostService{
 
 		log.info("modify.........." + vo);
 		
-		attachMapper.deleteAll(vo.getPost_id());
-		if (vo.getAttachList().size() > 0) {
 
-			vo.getAttachList().forEach(attach -> {
-
-				attach.setPost_id(vo.getPost_id());
-				attachMapper.insert(attach);
-			});
-		}
 		return mapper.update(vo);
 	}
 
@@ -67,7 +50,7 @@ public class PostServiceImpl implements PostService{
 	public boolean remove(int post_id) {
 
 		log.info("remove..........." + post_id );
-		attachMapper.deleteAll(post_id);
+//		attachMapper.deleteAll(post_id);
 		return mapper.delete(post_id) == 1;
 	}
 
@@ -79,19 +62,15 @@ public class PostServiceImpl implements PostService{
 	}
 	
 	@Override
-	public List<PostAttachVO> getAttachList(int post_id) {
+	public List<PostVO> search(String keyword) {
 
-		log.info("get Attach list by post_id" + post_id);
-
-		return attachMapper.findById(post_id);
+		log.info("get........." + keyword);
+		return mapper.search(keyword);
 	}
 
-	@Override
-	public void removeAttach(int post_id) {
 
-		log.info("remove all attach files");
+	
+	
 
-		attachMapper.deleteAll(post_id);
-	}
 
 }

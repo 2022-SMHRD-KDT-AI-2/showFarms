@@ -1,10 +1,22 @@
 package org.showfarm.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
+import javax.xml.bind.DatatypeConverter;
+
+import org.showfarm.domain.AttachFileDTO;
 import org.showfarm.domain.PostAttachVO;
 import org.showfarm.domain.PostVO;
 import org.showfarm.service.PostService;
@@ -12,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,8 +37,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import net.coobird.thumbnailator.Thumbnailator;
 
-@RequestMapping("/posts/")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RequestMapping("/posts")
 @RestController
 @Log4j
 @AllArgsConstructor
@@ -34,24 +49,54 @@ public class PostController {
 	@Autowired
 	private PostService service;
 	
+	
+
+	
 	@PostMapping(value = "/new", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> create(@RequestBody PostVO vo) {
 
+		String[] strings = vo.getBase64().split(",");
+        String extension;
+        switch (strings[0]) {//check image's extension
+            case "data:image/jpeg;base64":
+                extension = "jpeg";
+                break;
+            case "data:image/png;base64":
+                extension = "png";
+                break;
+            default://should write cases for more images types
+                extension = "jpg";
+                break;
+        }
+        
+        
+        UUID uuid = UUID.randomUUID();
+        String url = uuid.toString() + "." + extension;
+        
+        vo.setPost_img(url);
+        //convert base64 string to binary data
+        byte[] data = DatatypeConverter.parseBase64Binary(strings[1]);
+        String path = "c:\\upload\\image\\" + url;
+        File file = new File(path);
+        try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file))) {
+            outputStream.write(data);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+     
 		log.info("PostVO: " + vo);
 		
-		if (vo.getAttachList() != null) {
-
-			vo.getAttachList().forEach(attach -> log.info(attach));
-
-		}
-
 		int insertCount = service.register(vo);
 		log.info("Post INSERT COUNT: " + insertCount);
-
+		
 		return insertCount == 1  
 				?  new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	
+
 	
 	@GetMapping(value = "/{post_id}",
 			produces = {MediaType.APPLICATION_ATOM_XML_VALUE,
@@ -68,12 +113,7 @@ public class PostController {
 		
 		log.info("remove: " + post_id);
 		
-		List<PostAttachVO> attachList = service.getAttachList(post_id);
-		
-		if(service.remove(post_id)) {
-			deleteFiles(attachList);
-		}
-		
+
 		return service.remove(post_id)
 				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -99,55 +139,26 @@ public class PostController {
 	
 	@GetMapping(value = "/list",
 			produces = {
-					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
 	public ResponseEntity<List<PostVO>> getList (){
 		
 		log.info("getList...............");
 
+		return new ResponseEntity<>(service.getList(), HttpStatus.OK);
+	}
+	
+	
+	@GetMapping(value = "/{keyword}",
+			produces = {MediaType.APPLICATION_ATOM_XML_VALUE,
+						MediaType.APPLICATION_JSON_UTF8_VALUE})
+	public ResponseEntity<List<PostVO>> search(@PathVariable("keyword") String keyword){
+	
+		log.info("get: " + keyword);
 		
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(service.search(keyword), HttpStatus.OK);
 	}
 	
-	private void deleteFiles(List<PostAttachVO> attachList) {
-	    
-	    if(attachList == null || attachList.size() == 0) {
-	      return;
-	    }
-	    
-	    log.info("delete attach files...................");
-	    log.info(attachList);
-	    
-	    attachList.forEach(attach -> {
-	      try {        
-	        Path file  = Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\" + attach.getUuid()+"_"+ attach.getFileName());
-	        
-	        Files.deleteIfExists(file);
-	        
-	        if(Files.probeContentType(file).startsWith("image")) {
-	        
-	          Path thumbNail = Paths.get("C:\\upload\\"+attach.getUploadPath()+"\\s_" + attach.getUuid()+"_"+ attach.getFileName());
-	          
-	          Files.delete(thumbNail);
-	        }
-	
-	      }catch(Exception e) {
-	        log.error("delete file error" + e.getMessage());
-	      }//end catch
-	    });//end foreachd
-	  }
-
 	
 
-	@GetMapping(value = "/getAttachList",
-			    produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ResponseBody
-	public ResponseEntity<List<PostAttachVO>> getAttachList(int post_id) {
-
-		log.info("getAttachList " + post_id);
-
-		return new ResponseEntity<>(service.getAttachList(post_id), HttpStatus.OK);
-
-	}
 	
 }

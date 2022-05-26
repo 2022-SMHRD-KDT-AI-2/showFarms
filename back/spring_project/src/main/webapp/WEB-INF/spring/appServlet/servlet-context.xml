@@ -21,7 +21,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<beans:bean id="naverLoginBO" class="org.showfarm.domain.NaverLoginBO"/>
 	<beans:bean id="userVO" class="org.showfarm.domain.UserVO"/>
 	
 	<context:component-scan base-package="org.showfarm.controller" />
@@ -30,6 +29,7 @@
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 		</beans:bean>
 	
-	
+	<!-- Image View -->
+	<resources location="file:///C:/upload/image/" mapping="/images/**"></resources>
 	
 </beans:beans>

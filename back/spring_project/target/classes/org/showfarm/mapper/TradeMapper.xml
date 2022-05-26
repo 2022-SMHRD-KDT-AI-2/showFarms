@@ -5,8 +5,8 @@
   <mapper namespace="org.showfarm.mapper.TradeMapper">
   	<insert id="insert" parameterType="org.showfarm.domain.TradeVO">
 
-		insert into tbl_trade (trade_id, trade_price, post_discount, vol, trade_dt, mb_id, buyer_id)
-		values (tbl_trade_seq.nextval, #{trade_price}, #{post_discount}, #{vol}, sysdate, #{mb_id}, #{buyer_id})
+		insert into tbl_trade (trade_id, trade_price, vol, trade_dt, mb_id, buyer_id, post_id, post_title)
+		values (tbl_trade_seq.nextval, #{trade_price}, #{vol}, sysdate, #{mb_id}, #{buyer_id}, #{post_id}, #{post_title})
 
 	</insert>
   
@@ -26,7 +26,7 @@
 	<select id="getList"
 		resultType="org.showfarm.domain.TradeVO">
 
-		select * from tbl_trade order by trade_id desc
+		select * from tbl_trade where mb_id = #{mb_id}
 
 	</select>
   </mapper>
