@@ -28,9 +28,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserVO insertCheck(String mb_id) {
-		log.info("check..........." + mb_id);
-		return mapper.select(mb_id);
+	public UserVO insertCheck(String token) {
+		log.info("check..........." + token);
+		return mapper.select(token);
 	}
 
 }

@@ -13,8 +13,5 @@ public interface PostService {
 	public boolean remove(int post_id);
 	public List<PostVO> getList();
 	
-	// image
-	public List<PostAttachVO> getAttachList(int post_id);
 	
-	public void removeAttach(int post_id);
 }

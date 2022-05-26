@@ -39,10 +39,10 @@ public class TradeServiceImpl implements TradeService {
 	}
 
 	@Override
-	public List<TradeVO> getList() {
+	public List<TradeVO> getList(String mb_id) {
 		
 		log.info("get Trade List");
-		return mapper.getList();
+		return mapper.getList(mb_id);
 	}
 
 }

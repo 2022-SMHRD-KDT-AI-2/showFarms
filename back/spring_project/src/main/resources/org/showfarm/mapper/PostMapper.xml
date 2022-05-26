@@ -5,8 +5,8 @@
   <mapper namespace="org.showfarm.mapper.PostMapper">
   	<insert id="insert" parameterType="org.showfarm.domain.PostVO">
 
-		insert into tbl_post (post_id, mb_id, post_title, post_content, post_price, post_discount, post_dt)
-		values (tbl_post_seq.nextval, #{mb_id}, #{post_title}, #{post_content}, #{post_price}, #{post_discount}, sysdate)
+		insert into tbl_post (post_id, mb_id, post_title, post_content, post_price, post_unit, post_category, post_shipping, post_dt, post_img)
+		values (tbl_post_seq.nextval, #{mb_id}, #{post_title}, #{post_content}, #{post_price}, #{post_unit}, #{post_category}, #{post_shipping}, sysdate, #{post_img})
 
 	</insert>
   

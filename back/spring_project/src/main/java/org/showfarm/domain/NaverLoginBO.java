@@ -20,7 +20,7 @@ public class NaverLoginBO {
 	
 	private final static String CLIENT_ID = "T4m8Ztvk7v3Dl6I1LFsJ";
 	private final static String CLIENT_SECRET = "BHNrLI5SYG";
-	private final static String REDIRECT_URI = "http://localhost:8081/callback";
+	private final static String REDIRECT_URI = "http://localhost:3000/callback";
 	private final static String SESSION_STATE = "oauth_state";
 	private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me"; 
 	
@@ -46,7 +46,7 @@ public class NaverLoginBO {
     public OAuth2AccessToken getAccessToken(HttpSession session, String code, String state) throws IOException{
  
         /* Callback으로 전달받은 세선검증용 난수값과 세션에 저장되어있는 값이 일치하는지 확인 */
-        String sessionState = getSession(session);
+        String sessionState = (String)session.getAttribute("state");
         if(StringUtils.pathEquals(sessionState, state)){
  
             OAuth20Service oauthService = new ServiceBuilder()

@@ -30,6 +30,7 @@
 		class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
 		</beans:bean>
 	
-	
+	<!-- Image View -->
+	<resources location="file:///C:/upload/image/" mapping="/images/**"></resources>
 	
 </beans:beans>

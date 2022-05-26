@@ -2,29 +2,39 @@ package org.showfarm.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.showfarm.domain.NaverLoginBO;
+import org.showfarm.domain.PostVO;
 import org.showfarm.domain.UserVO;
 import org.showfarm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.CookieGenerator;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import lombok.extern.log4j.Log4j;
 
-@Controller
+@CrossOrigin(origins = "*", allowedHeaders = "*")
+@RestController
 @Log4j
 public class LoginController {
 	
@@ -53,15 +63,20 @@ public class LoginController {
         model.addAttribute("url", naverAuthUrl);
  
         /* 생성한 인증 URL을 View로 전달 */
-        return "login";
+        return naverAuthUrl;
     }
+	
+	
  
     //네이버 로그인 성공시 callback호출 메소드
     @RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
-    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, UserVO vo)
+    public ResponseEntity<JSONObject> callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session, HttpServletResponse res)
             throws IOException, ParseException {
     	
+    	UserVO vo = new UserVO();
     	log.info("state: " + state);
+    	log.info("session: " + session);
+    	log.info("session: " + session.getAttribute("oauth_state"));
         System.out.println("여기는 callback");
         OAuth2AccessToken oauthToken;
         oauthToken = naverLoginBO.getAccessToken(session, code, state);
@@ -95,8 +110,10 @@ public class LoginController {
 		if(service.insertCheck(id) == null) {
 			service.register(vo);
 		}
-		return "successNaver";
+		
+		return new ResponseEntity<>(response_obj, HttpStatus.OK);
     }
+    
     
 	//로그아웃
 	@RequestMapping(value = "/logout", method = { RequestMethod.GET, RequestMethod.POST })

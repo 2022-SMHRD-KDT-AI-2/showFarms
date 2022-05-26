@@ -9,6 +9,6 @@ public interface TradeMapper {
 	public int insert(TradeVO vo);
 	public TradeVO read(int trade_id);
 	public int delete(int trade_id);
-	public List<TradeVO> getList();
+	public List<TradeVO> getList(String mb_id);
 
 }

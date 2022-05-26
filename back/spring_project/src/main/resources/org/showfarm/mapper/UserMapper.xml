@@ -12,6 +12,6 @@
 	
 	<select id="select" resultType="org.showfarm.domain.UserVO">
 		select * from tbl_user
-		where mb_id = #{mb_id}
+		where token = #{token}
 	</select>
  </mapper>
