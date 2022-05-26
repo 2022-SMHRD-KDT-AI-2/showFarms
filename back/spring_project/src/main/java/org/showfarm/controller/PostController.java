@@ -144,8 +144,6 @@ public class PostController {
 		
 		log.info("getList...............");
 
-		
-		
 		return new ResponseEntity<>(service.getList(), HttpStatus.OK);
 	}
 	

@@ -7,8 +7,9 @@ public class UserVO {
 	
 	private String mb_id;
 	private String mb_name;
-	private String mb_phone;
-	private String token;
+	private String mb_lati;
+	private String mb_longi;
 	private int mb_type;
+	private String mb_pw;
 
 }
