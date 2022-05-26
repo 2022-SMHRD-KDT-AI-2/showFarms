@@ -7,8 +7,8 @@ app = FastAPI()
 
 # query parameter /video/?user={}&post_id={}
 @app.get("/video")
-async def main(user, post_id):
-    return StreamingResponse(get_stream_video(user), media_type="multipart/x-mixed-replace; boundary=frame")
+async def main():
+    return StreamingResponse(get_stream_video(), media_type="multipart/x-mixed-replace; boundary=frame")
 
 
 # send request to spring server : stream start
@@ -17,9 +17,9 @@ async def stream_start(post_id, user):
 
 
 # connect to web
-def get_stream_video(user):
-    url = "rtmp://172.30.1.2/live/"
-    cam = cv2.VideoCapture(url + user)
+def get_stream_video():
+    url = "rtmp://172.30.1.36/live/"
+    cam = cv2.VideoCapture(url + "test")
 
     ## detect.py -> url
 

@@ -3,8 +3,10 @@ import CardGrid from "../../components/cardGrid";
 import {HomeContainer} from "../../styles/layout";
 import {Banner} from "../../components/banner";
 import Header from "../../components/header";
+import axiosInstance from "../../utils/AxiosInstance";
 
 const Home = () => {
+
     return (
         <div style={{
             display: "flex",

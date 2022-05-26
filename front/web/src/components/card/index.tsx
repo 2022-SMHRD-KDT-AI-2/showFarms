@@ -4,27 +4,42 @@ import {
     CardContents,
     CardHeader,
 } from "../../styles/element";
-import titleImg from "../../images/icons/title_img.png";
+import useToggleModal from "../../hooks/useToggleModal";
+import Modal from "../modal";
+import Post from "../../pages/post";
 
 interface ICard {
     img: string;
     title: string;
     seller: string;
-    discount: number;
     price: number;
     shipmentFee: string;
+    unit: string,
+    category: string,
+    contents: string,
+    postId: number
 }
 
-const Card = ({img, title, seller, discount, shipmentFee, price}: ICard) => {
+const Card = ({img, title, seller, shipmentFee, price, contents, unit, category, postId}: ICard) => {
+    const [view, , openView, closeView] = useToggleModal()
+
     return (
-        <CardContainer>
-            <img src={titleImg}/>
+        <CardContainer onClick={openView}>
+            <img src={`http://121.147.185.200:8081/images/${img}`} alt=""/>
             <div>
-                <CardContents>판매자 : {seller}</CardContents>
+                <CardContents>{seller}</CardContents>
                 <CardHeader>{title}</CardHeader>
-                <CardContents>{(price * (100 - discount)) / 100}</CardContents>
+                <CardContents>{price}</CardContents>
                 <CardContents>{shipmentFee}</CardContents>
             </div>
+            {
+                view && <Modal component={
+                    <Post
+                        img={img} title={title} price={price} postId={postId}
+                        category={category} contents={contents} unit={unit}
+                        shipping={shipmentFee} seller={seller} onClose={closeView}/>
+                } onCloseModal={closeView}/>
+            }
         </CardContainer>
     );
 };

@@ -14,6 +14,7 @@ import {
 import SelectList from "../../components/selectList";
 import {category} from "../../datas";
 import {FlexRowDiv} from "../../styles/common";
+import axiosInstance from "../../utils/AxiosInstance";
 
 interface IWrite {
     onCloseModal: () => void
@@ -23,8 +24,10 @@ const Write = ({onCloseModal}: IWrite) => {
     const [title, onChangeTitle] = useInput("");
     const [price, onChangePrice] = useInput("");
     const [unit, onChangeUnit] = useInput("");
+    const [shipping, onChangeShipping] = useInput("")
     const [categoryState, setCategoryState] = useState<string>("");
     const [base64, image, onChangeImage] = useImage();
+
     const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
     const onChangeCategoryState = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -44,6 +47,21 @@ const Write = ({onCloseModal}: IWrite) => {
             imgRef.current.click();
         }
     }, []);
+
+    const onSubmit = () => {
+        const contents = convertToRaw(editorState.getCurrentContent()).blocks[0].text
+        console.log(contents.toString())
+        axiosInstance.post("/posts/new", {
+            "base64": base64,
+            "mb_id": "test",
+            "post_title": title.toString(),
+            "post_price": parseInt(price),
+            "post_unit": unit.toString(),
+            "post_shipping": shipping.toString(),
+            "post_content": contents,
+            "post_category": categoryState.toString(),
+        }).then((res) => console.log(res.data))
+    }
     return (
         <>
             <WriteContainer onClick={(e) => e.stopPropagation()}>
@@ -61,15 +79,15 @@ const Write = ({onCloseModal}: IWrite) => {
                 <span>
                     <div>
                         <text>상품명</text>
-                        <Input width={"100%"} placeholder={"상품명을 입력하세요."}/>
+                        <Input width={"100%"} placeholder={"상품명을 입력하세요."} value={title} onChange={onChangeTitle}/>
                     </div>
                     <div>
                         <text>가격</text>
-                        <Input width={"100%"} placeholder={"가격을 입력해주세요."}/>
+                        <Input width={"100%"} placeholder={"가격을 입력해주세요."} value={price} onChange={onChangePrice}/>
                     </div>
                     <div>
                         <text>단위</text>
-                        <Input width={"100%"} placeholder={"KG or Box"}/>
+                        <Input width={"100%"} placeholder={"KG or Box"} value={unit} onChange={onChangeUnit}/>
                     </div>
                     <div>
                         <text>분류</text>
@@ -80,7 +98,7 @@ const Write = ({onCloseModal}: IWrite) => {
                     </div>
                     <div>
                         <text>배송비</text>
-                        <Input width={"100%"} placeholder={"가격을 입력해주세요."}/>
+                        <Input width={"100%"} placeholder={"가격을 입력해주세요."} value={shipping} onChange={onChangeShipping}/>
                     </div>
                 </span>
 
@@ -103,9 +121,7 @@ const Write = ({onCloseModal}: IWrite) => {
                 />
                 <FlexRowDiv>
                     <Button onClick={onCloseModal}>취소</Button>
-                    <Button onClick={() => {
-                        console.log(convertToRaw(editorState.getCurrentContent()))
-                    }}>등록</Button>
+                    <Button onClick={onSubmit}>등록</Button>
                 </FlexRowDiv>
 
             </WriteContainer>

@@ -5,7 +5,6 @@ import Table from "./table";
 const Pages = () => {
     return (
         <MyPagesContainer>
-            <Table/>
         </MyPagesContainer>
     );
 };

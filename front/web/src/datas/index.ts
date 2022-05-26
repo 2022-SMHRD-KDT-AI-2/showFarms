@@ -5,3 +5,5 @@ export const loginTargetUrl = {
 };
 
 export const category = ["사과", "배", "감", "귤"];
+
+export const imageTarget = "http://121.147.185.200:8081/images/"
