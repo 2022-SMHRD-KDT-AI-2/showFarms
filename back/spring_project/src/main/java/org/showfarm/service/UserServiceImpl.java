@@ -1,5 +1,9 @@
 package org.showfarm.service;
 
+import java.util.List;
+
+import org.showfarm.domain.PostVO;
+import org.showfarm.domain.UserDTO;
 import org.showfarm.domain.UserVO;
 import org.showfarm.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +35,18 @@ public class UserServiceImpl implements UserService {
 	public UserVO insertCheck(UserVO vo) {
 		log.info("check..........." + vo);
 		return mapper.select(vo);
+	}
+
+	@Override
+	public List<PostVO> location(UserDTO dto) {
+		log.info("get........." + dto);
+		return mapper.location(dto);
+	}
+
+	@Override
+	public List<UserVO> getList(UserDTO dto) {
+		log.info("getList........." + dto);
+		return mapper.getList(dto);
 	}
 
 }

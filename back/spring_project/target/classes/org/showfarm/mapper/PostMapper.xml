@@ -41,11 +41,41 @@
 	
 	<select id="search" resultType="org.showfarm.domain.PostVO">
 
-		<!-- select * from tbl_post, tbl_video where  tbl_post.post_id = tbl_video.post_id 
-		and tbl_post.post_id = #{post_id} -->
 		select * from tbl_post where post_title like '%'||#{keyword}||'%'  
 
 	</select>
 	
 	
+	<select id="getListWithPaging" resultType="org.showfarm.domain.PostVO">
+  <![CDATA[
+  select 
+  			*
+  from 
+      (
+      select /*+INDEX_DESC(tbl_post pk_post) */
+        rownum rn, post_id, post_title, post_content, post_price, post_dt, post_unit, post_category, post_shipping, post_img
+      from 
+        tbl_post
+      where 
+  ]]>
+
+  <!-- <include refid="search"></include> --> 
+      
+  <![CDATA[    
+      rownum <= #{pageNum} * #{amount}
+      )
+  where rn > (#{pageNum} -1) * #{amount}   
+  ]]>
+  </select>
+  
+  
+   <select id="getTotalCount" resultType="int">
+  		
+  		select count(*) from tbl_post where 
+  
+   	 <!-- <include refid="search"></include>  -->
+    
+  		post_id > 0  
+  
+  </select>
   </mapper>
