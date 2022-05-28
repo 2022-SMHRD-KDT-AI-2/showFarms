@@ -1,10 +1,6 @@
 import React from "react";
 import { SelectListContainer } from "../../styles/element";
-
-interface ISelectList {
-  data: string[];
-  onChangeCategoryState: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-}
+import { ISelectList } from "../../types";
 
 const SelectList = ({ data, onChangeCategoryState }: ISelectList) => {
   return (

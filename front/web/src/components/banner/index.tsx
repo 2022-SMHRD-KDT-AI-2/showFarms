@@ -5,10 +5,10 @@ import banner01 from "../../images/banners/banner01.png";
 
 export const Banner = () => {
     return (
-        <>
-            <BannerContainer>
-                <BannerItem src={banner01}/>
-            </BannerContainer>
-        </>
+
+        <BannerContainer>
+            <BannerItem src={banner01}/>
+        </BannerContainer>
+
     );
 };
