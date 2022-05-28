@@ -2,6 +2,7 @@ package org.showfarm.service;
 
 import java.util.List;
 
+import org.showfarm.domain.Criteria;
 import org.showfarm.domain.PostAttachVO;
 import org.showfarm.domain.PostVO;
 import org.showfarm.mapper.PostAttachMapper;
@@ -54,18 +55,31 @@ public class PostServiceImpl implements PostService{
 		return mapper.delete(post_id) == 1;
 	}
 
-	@Override
-	public List<PostVO> getList() {
-
-		log.info("get Post List");
-		return mapper.getList();
-	}
+//	@Override
+//	public List<PostVO> getList() {
+//
+//		log.info("get Post List");
+//		return mapper.getList();
+//	}
 	
 	@Override
 	public List<PostVO> search(String keyword) {
 
 		log.info("get........." + keyword);
 		return mapper.search(keyword);
+	}
+
+	@Override
+	public List<PostVO> getList(Criteria cri) {
+		log.info("get List with criteria: " + cri);
+
+		return mapper.getListWithPaging(cri);
+	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		log.info("get total count");
+		return mapper.getTotalCount(cri);
 	}
 
 

@@ -5,25 +5,22 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 import javax.xml.bind.DatatypeConverter;
 
-import org.showfarm.domain.AttachFileDTO;
-import org.showfarm.domain.PostAttachVO;
+import org.showfarm.domain.Criteria;
+import org.showfarm.domain.PageDTO;
+import org.showfarm.domain.PostListVO;
 import org.showfarm.domain.PostVO;
 import org.showfarm.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,12 +29,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import net.coobird.thumbnailator.Thumbnailator;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/posts")
@@ -137,15 +132,34 @@ public class PostController {
 						
 	}
 	
-	@GetMapping(value = "/list",
-			produces = {
-					MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<PostVO>> getList (){
-		
-		log.info("getList...............");
+	@GetMapping("/list")
+	public ResponseEntity<PostListVO> list(Criteria cri) {
 
-		return new ResponseEntity<>(service.getList(), HttpStatus.OK);
+		log.info("list: " + cri);
+		List<PostVO> post = service.getList(cri);
+
+		int total = service.getTotal(cri);
+
+		log.info("total: " + total);
+
+		PostListVO postList = new PostListVO();
+		postList.setPostList(post);
+		postList.setTotal(total);
+		
+
+		return new ResponseEntity<>(postList, HttpStatus.OK);
 	}
+	
+	
+//	@GetMapping(value = "/list",
+//			produces = {
+//					MediaType.APPLICATION_JSON_UTF8_VALUE})
+//	public ResponseEntity<List<PostVO>> getList (){
+//		
+//		log.info("getList...............");
+//
+//		return new ResponseEntity<>(service.getList(), HttpStatus.OK);
+//	}
 	
 	
 	@GetMapping(value = "/{keyword}",
@@ -157,6 +171,8 @@ public class PostController {
 		
 		return new ResponseEntity<>(service.search(keyword), HttpStatus.OK);
 	}
+	
+	
 	
 	
 

@@ -14,4 +14,22 @@
 		select * from tbl_user
 		where mb_id = #{mb_id} and mb_pw = #{mb_pw}
 	</select>
+	
+	<select id="location" resultType="org.showfarm.domain.PostVO">
+
+		select * from tbl_post 
+		where mb_id in (select mb_id from tbl_user 
+		where mb_lati between #{user_lati1} and #{user_lati2} 
+		and mb_longi between #{user_longi1} and #{user_longi2}) 
+
+	</select>
+	
+	<select id="getList" resultType="org.showfarm.domain.UserVO">
+
+		select * from tbl_user 
+		where mb_id in (select mb_id from tbl_user 
+		where mb_lati between #{user_lati1} and #{user_lati2} 
+		and mb_longi between #{user_longi1} and #{user_longi2}) 
+
+	</select>
  </mapper>
