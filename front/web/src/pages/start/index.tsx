@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   AddInfoContainer,
   BackgroundImage,
@@ -62,8 +62,9 @@ const Start = () => {
           mb_longi: long,
         })
         .then((res) => {
-          console.log(res.data);
-          //if (res.data) toggleLogin();
+          if (res.data) {
+            toggleLogin();
+          }
         });
     };
 
@@ -132,8 +133,13 @@ const Start = () => {
           mb_pw: password,
         })
         .then((res) => {
-          console.log(res);
-          //if (res.data) nav("/main");
+          if (res.data) {
+            window.localStorage.setItem("lat", res.data.mb_lati);
+            window.localStorage.setItem("long", res.data.mb_longi);
+            window.localStorage.setItem("id", res.data.mb_id);
+
+            nav("/main");
+          }
         });
     };
     return (

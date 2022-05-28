@@ -11,14 +11,14 @@ import android.util.Log
 import android.widget.Button
 import androidx.core.app.ActivityCompat
 import com.example.streamapp.databinding.ActivityMainBinding
+import com.example.streamapp.http.HttpConnection
 import com.example.streamapp.list.SalesListActivity
+import kotlin.coroutines.CoroutineContext
 
 //login activity
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
-    private val targetUrlArr: Array<String> = arrayOf("kakao", "naver", "google")
-    lateinit var buttonArr: Array<Button>
     private val PERMISSIONS = arrayOf(
         Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA,
         Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -34,8 +34,9 @@ class MainActivity : AppCompatActivity() {
         hideSystemUI(window)
 
         binding.ButtonLogin.setOnClickListener {
-            val intent: Intent = Intent(this@MainActivity, SalesListActivity::class.java)
-            startActivity(intent)
+
+            //val intent: Intent = Intent(this@MainActivity, SalesListActivity::class.java)
+            //startActivity(intent)
         }
 
     }

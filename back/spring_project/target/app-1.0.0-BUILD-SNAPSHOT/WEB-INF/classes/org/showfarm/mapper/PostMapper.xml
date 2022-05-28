@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="org.showfarm.mapper.PostMapper">
+  	<insert id="insert" parameterType="org.showfarm.domain.PostVO">
+
+		insert into tbl_post (post_id, mb_id, post_title, post_content, post_price, post_discount, post_dt)
+		values (tbl_post_seq.nextval, #{mb_id}, #{post_title}, #{post_content}, #{post_price}, #{post_discount}, sysdate)
+
+	</insert>
+  
+  	<select id="read" resultType="org.showfarm.domain.PostVO">
+
+		select * from tbl_post, tbl_video where  tbl_post.post_id = tbl_video.post_id 
+		and tbl_post.post_id = #{post_id}
+
+	</select>
+	
+	<delete id="delete">
+
+		delete from tbl_post where post_id = #{post_id}
+
+	</delete>
+	
+	<update id="update">
+
+		update tbl_post set post_title = #{post_title},
+		post_content = #{post_content}, post_price = #{post_price}, post_discount = #{post_discount}, post_dt = sysdate 
+		where post_id = #{post_id}
+
+	</update>
+	
+	<select id="getList"
+		resultType="org.showfarm.domain.PostVO">
+
+		select * from tbl_post order by post_id desc
+
+	</select>
+  </mapper>

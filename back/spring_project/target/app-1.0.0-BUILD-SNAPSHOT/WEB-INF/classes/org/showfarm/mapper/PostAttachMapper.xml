@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.showfarm.mapper.PostAttachMapper">
+
+	<insert id="insert">
+		insert into tbl_attach (uuid, uploadpath, filename,
+		filetype, post_id)
+		values (#{uuid}, #{uploadPath}, #{fileName},
+		#{fileType}, #{post_id} )
+	</insert>
+
+	<delete id="delete">
+
+		delete from tbl_attach where uuid = #{uuid}
+
+	</delete>
+
+	<select id="findById"
+		resultType="org.showfarm.domain.PostAttachVO">
+		select * from tbl_attach where post_id = #{post_id}
+	</select>
+
+	<delete id="deleteAll">
+
+		delete tbl_attach where post_id = #{post_id}
+
+	</delete>
+
+	<select id="getOldFiles"
+		resultType="org.showfarm.domain.PostAttachVO">
+
+		select * from tbl_attach where uploadpath = to_char(sysdate -1 ,'yyyy\mm\dd')
+
+	</select>
+
+
+</mapper>

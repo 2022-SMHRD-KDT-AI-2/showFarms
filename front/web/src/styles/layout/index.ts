@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { FlexColumnDiv, FlexRowDiv } from "../common";
-import { agriculture, blackAndWhite } from "../../datas/color";
+import { agriculture } from "../../datas/color";
 
 export const AppContainer = styled(FlexColumnDiv)`
   overflow: scroll;
@@ -18,6 +18,10 @@ export const HomeContainer = styled(FlexColumnDiv)`
 `;
 
 export const PostContainer = styled(FlexColumnDiv)`
+  * {
+    padding: 1rem;
+  }
+
   img {
     height: 30rem;
   }
@@ -30,6 +34,7 @@ export const PostContainer = styled(FlexColumnDiv)`
 
   button {
     width: 8rem;
+    padding: 0;
   }
 
   font-size: 1.7rem;
@@ -37,6 +42,13 @@ export const PostContainer = styled(FlexColumnDiv)`
   .size1 {
     font-size: 2.2rem;
     margin: 0.5rem;
+  }
+
+  .contents {
+    width: 100%;
+    height: 20rem;
+    overflow: auto;
+    text-align: left;
   }
 `;
 
@@ -90,6 +102,7 @@ export const WriteContainer = styled(FlexColumnDiv)`
     padding: 1rem;
     font-size: 2rem;
     border: 1px solid rgba(0, 0, 0, 0.3);
+    max-width: 1200px;
   }
 
   > div > button {
@@ -98,13 +111,6 @@ export const WriteContainer = styled(FlexColumnDiv)`
     font-size: 2rem;
     margin: 1rem;
   }
-`;
-
-export const MyPagesContainer = styled(FlexRowDiv)`
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
 `;
 
 export const MovieContainer = styled(FlexRowDiv)``;
@@ -117,7 +123,7 @@ export const MapContainer = styled(FlexRowDiv)`
 `;
 
 export const KaKaoMap = styled.div`
-  width: 75vw;
+  width: 140rem;
   height: 99vh;
   margin: 0.5vh;
 `;
@@ -129,13 +135,18 @@ export const ShopListContainer = styled(FlexColumnDiv)`
 `;
 
 export const ShopListItem = styled(FlexRowDiv)`
-  margin: 1vh 0 1vh 0;
-  border-bottom: 0.1vh solid rgba(0, 0, 0, 0.2);
-  padding-bottom: 1vh;
-  width: 23vw;
+  margin: 1rem 0 1rem 0;
+  border-bottom: 0.1vh solid rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+
+  > img {
+    height: 10rem;
+    width: 15rem;
+  }
 
   &:hover {
-    background-color: rgba(164, 116, 68, 0.2);
+    background-color: rgba(0, 0, 0, 0.15);
+    border: none;
   }
 `;
 
@@ -165,23 +176,6 @@ export const BannerContainer = styled.div`
   }
 `;
 
-export const CategoryContainer = styled(FlexRowDiv)`
-  height: 12rem;
-
-  > img {
-    width: 10rem;
-    height: 10rem;
-    margin: 1rem 2rem 1rem 2rem;
-
-    &:hover {
-      width: 11rem;
-      height: 11rem;
-      margin: 0 1rem 0 1rem;
-      cursor: pointer;
-    }
-  }
-`;
-
 export const StartContainer = styled.div`
   width: 100vw;
   height: 100vh;
@@ -208,7 +202,7 @@ export const LoginBackground = styled.div`
   z-index: 1;
   position: absolute;
   right: 0;
-  opacity: 0.1;
+  opacity: 0.05;
   justify-content: center;
   align-items: center;
 `;
@@ -230,19 +224,12 @@ export const LoginButton = styled.button`
   width: 20rem;
   height: 5rem;
   margin: 1.5vw 0 1.5vw 0;
-  background-color: ${agriculture[3]};
+  background-color: ${agriculture[2]};
   border-radius: 0.5rem;
   border: none;
   color: white;
   font-size: 2.5rem;
   font-weight: bold;
-`;
-
-export const Navigator = styled.span`
-  position: fixed;
-  left: 0.5vw;
-  top: 0.5vw;
-  z-index: 100;
 `;
 
 export const TableContainer = styled.div`
@@ -307,8 +294,6 @@ export const ModalContainer = styled.div`
 export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
-  position: sticky;
   width: 100%;
   background-color: white;
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
@@ -328,7 +313,6 @@ export const HeaderContainer = styled.div`
 
     &:hover {
       color: ${agriculture[3]};
-      height: 100%;
       cursor: pointer;
     }
   }
@@ -340,10 +324,9 @@ export const HeaderContainer = styled.div`
 
   > div {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    width: 1500px;
+    width: 500px;
   }
 `;
 
@@ -375,5 +358,18 @@ export const AddInfoContainer = styled.div`
 
   p {
     color: rgba(255, 0, 0, 0.8);
+  }
+`;
+
+export const Pagination = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  > button {
+    font-size: 2.3rem;
+    margin: 0.3rem;
+    background-color: ${agriculture[3]};
+    border-radius: 0.5rem;
   }
 `;

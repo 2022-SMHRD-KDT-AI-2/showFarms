@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
-import {FlexColumnDiv, FlexRowDiv} from "../common";
-import {agriculture} from "../../datas/color";
+import { FlexColumnDiv, FlexRowDiv } from "../common";
+import { agriculture } from "../../datas/color";
 
 export const Input = styled.input`
   border-radius: 4px;
@@ -56,9 +56,8 @@ export const ButtonSecond = styled.button`
 `;
 
 export const CardContainer = styled(FlexColumnDiv)`
-  width: 23%;
+  width: 100%;
   margin: 1rem;
-
 
   text {
     margin: 0.3vh;
@@ -234,12 +233,12 @@ export const ArrowLeft = styled.img`
 
 export const MovieItem = styled.div`
   > * {
-    margin: 1rem
+    margin: 1rem;
   }
 
   > img {
     width: 1600px;
-    height: 900px
+    height: 900px;
   }
 
   .size1 {
@@ -257,7 +256,7 @@ export const MovieItem = styled.div`
     align-items: center;
 
     text {
-      margin: 1rem
+      margin: 1rem;
     }
   }
 
