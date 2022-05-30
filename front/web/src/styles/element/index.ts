@@ -77,6 +77,19 @@ export const CardContainer = styled(FlexColumnDiv)`
     height: 400px;
     border-radius: 0.5rem;
   }
+
+  .highlight {
+    position: absolute;
+    width: fit-content;
+    background-color: ${agriculture[0]};
+    border: none;
+    border-radius: 1rem;
+    font-size: 2.4rem;
+    padding: 0.3rem 1rem 0.3rem 1rem;
+    color: white;
+    font-weight: bold;
+    margin: 1rem;
+  }
 `;
 
 export const CardHeader = styled.span`

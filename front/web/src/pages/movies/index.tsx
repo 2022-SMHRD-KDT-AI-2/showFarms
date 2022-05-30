@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MovieContainer } from "../../styles/layout";
 
 import "video.js/dist/video-js.css";
-import { Button, MovieItem, MovieList } from "../../styles/element";
+import { Button, MovieItem } from "../../styles/element";
 import Header from "../../components/header";
 import { useParams } from "react-router";
 import { IPost } from "../../types";
@@ -11,6 +11,7 @@ import axiosInstance from "../../utils/AxiosInstance";
 const Movies: React.FC<any> = () => {
   const { postid } = useParams();
   const [data, setData] = useState<IPost>();
+
   useEffect(() => {
     axiosInstance.get(`/posts/${postid}`).then((res) => {
       if (res.data) {
@@ -18,6 +19,7 @@ const Movies: React.FC<any> = () => {
       }
     });
   }, []);
+
   return (
     <div>
       <Header />
@@ -34,7 +36,7 @@ const Movies: React.FC<any> = () => {
             <span className="size2">{`${data?.post_price} / ${data?.post_unit}`}</span>
           </div>
         </MovieItem>
-        <MovieList>{/*<ShopList/>*/}</MovieList>
+        {/*<MovieList>/!*<ShopList/>*!/</MovieList>*/}
       </MovieContainer>
     </div>
   );

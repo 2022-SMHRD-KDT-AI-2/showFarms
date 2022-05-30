@@ -39,11 +39,11 @@ const Write = ({ onCloseModal }: IWrite) => {
     }
   }, []);
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const contents = convertToRaw(editorState.getCurrentContent()).blocks[0]
       .text;
 
-    axiosInstance
+    await axiosInstance
       .post("/posts/new", {
         base64: base64,
         mb_id: window.localStorage.getItem("id"),
@@ -56,8 +56,8 @@ const Write = ({ onCloseModal }: IWrite) => {
       })
       .then((res) => {
         if (res.data) {
-          onCloseModal();
           nav("/main/1");
+          onCloseModal();
         }
       });
   };

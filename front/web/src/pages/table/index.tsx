@@ -34,8 +34,8 @@ const Table = () => {
                 <td>{index + 1}</td>
                 <td>{`${date.getFullYear()} ${date.getMonth()} ${date.getDate()} ${date.getHours()}:${date.getMinutes()}`}</td>
                 <td>{item.post_title}</td>
-                <td>{item.mb_id}</td>
                 <td>{item.buyer_id}</td>
+                <td>{item.mb_id}</td>
                 <td>{item.vol}</td>
                 <td>{item.trade_price}</td>
               </tr>
