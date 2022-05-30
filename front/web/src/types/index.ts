@@ -24,6 +24,7 @@ export interface ICard {
   category: string;
   contents: string;
   postId: number;
+  type?: string;
 }
 
 export interface IUser {

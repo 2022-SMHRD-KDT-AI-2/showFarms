@@ -15,15 +15,19 @@ export const AppContainer = styled(FlexColumnDiv)`
 export const HomeContainer = styled(FlexColumnDiv)`
   width: 1500px;
   background-color: white;
+  align-items: center;
 `;
 
 export const PostContainer = styled(FlexColumnDiv)`
+  max-width: 1200px;
+
   * {
     padding: 1rem;
   }
 
   img {
-    height: 30rem;
+    height: 40rem;
+    object-fit: scale-down;
   }
 
   > div {
@@ -40,7 +44,7 @@ export const PostContainer = styled(FlexColumnDiv)`
   font-size: 1.7rem;
 
   .size1 {
-    font-size: 2.2rem;
+    font-size: 3rem;
     margin: 0.5rem;
   }
 
@@ -49,6 +53,17 @@ export const PostContainer = styled(FlexColumnDiv)`
     height: 20rem;
     overflow: auto;
     text-align: left;
+    font-size: 2.3rem;
+  }
+
+  span {
+    display: flex;
+  }
+
+  .space {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 `;
 
@@ -59,15 +74,17 @@ export const WriteContainer = styled(FlexColumnDiv)`
   min-width: 1000px;
 
   > img {
-    width: 300px;
+    height: 40rem;
+    object-fit: scale-down;
     border-radius: 1rem;
     border: 1px solid rgba(0, 0, 0, 0.1);
     margin: 1rem;
     font-size: 2rem;
   }
 
-  text {
-    font-size: 2vh;
+  span {
+    font-size: 2.3rem;
+    width: 10rem;
   }
 
   ::-webkit-scrollbar {
@@ -366,10 +383,14 @@ export const Pagination = styled.div`
   flex-direction: row;
   justify-content: center;
 
-  > button {
+  button {
     font-size: 2.3rem;
     margin: 0.3rem;
     background-color: ${agriculture[3]};
     border-radius: 0.5rem;
+    border: none;
+    text-align: center;
+    padding: 3px;
+    width: 5rem;
   }
 `;

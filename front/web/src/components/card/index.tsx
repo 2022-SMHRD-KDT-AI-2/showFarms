@@ -5,6 +5,7 @@ import Modal from "../modal";
 import Post from "../../pages/post";
 import { ICard } from "../../types";
 import { imageTarget } from "../../datas";
+import { useNavigate } from "react-router";
 
 const Card = ({
   img,
@@ -16,9 +17,10 @@ const Card = ({
   unit,
   category,
   postId,
+  type,
 }: ICard) => {
   const [view, , openView, closeView] = useToggleModal();
-
+  const nav = useNavigate();
   return (
     <div
       style={{
@@ -26,7 +28,9 @@ const Card = ({
         margin: "1rem",
       }}
     >
-      <CardContainer onClick={openView}>
+      <CardContainer
+        onClick={type == "Live" ? () => nav(`/movies/${postId}`) : openView}
+      >
         <img src={imageTarget + img} alt="" />
         <div>
           <CardContents>{seller}</CardContents>

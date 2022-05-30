@@ -17,7 +17,7 @@ import axiosInstance from "../../utils/AxiosInstance";
 import { useNavigate } from "react-router";
 
 const Start = () => {
-  const [viewButtons, , openButtons, closeButtons] = useToggleModal(true);
+  const [viewButtons, , , closeButtons] = useToggleModal(true);
   const [viewLogin, , openLogin, closeLogin] = useToggleModal();
   const [viewSignup, , openSignup, closeSignup] = useToggleModal();
   const nav = useNavigate();
@@ -53,19 +53,29 @@ const Start = () => {
     const [long, , setLong] = useInput(0);
 
     const onSubmitSignup = () => {
-      axiosInstance
-        .post("/users/new", {
-          mb_id: id,
-          mb_name: name,
-          mb_pw: password,
-          mb_lati: lat,
-          mb_longi: long,
-        })
-        .then((res) => {
-          if (res.data) {
-            toggleLogin();
-          }
-        });
+      const check =
+        id !== "" &&
+        passwordCheck !== "" &&
+        password !== "" &&
+        name !== "" &&
+        lat !== 0;
+      if (check) {
+        axiosInstance
+          .post("/users/new", {
+            mb_id: id,
+            mb_name: name,
+            mb_pw: password,
+            mb_lati: lat,
+            mb_longi: long,
+          })
+          .then((res) => {
+            if (res.data) {
+              toggleLogin();
+            }
+          });
+      } else {
+        alert("모든 항목을 입력해주세요!");
+      }
     };
 
     useEffect(() => {
@@ -99,13 +109,17 @@ const Start = () => {
 
     return (
       <AddInfoContainer>
-        <text>ID</text>
+        <span>ID</span>
         <Input value={id} onChange={onChangeId} />
-        <text>Password</text>
-        <Input value={password} onChange={onChangePassword} />
-        <text>Password Check</text>
-        <Input value={passwordCheck} onChange={onChangePasswordCheck} />
-        <text>Name</text>
+        <span>Password</span>
+        <Input value={password} onChange={onChangePassword} type="password" />
+        <span>Password Check</span>
+        <Input
+          value={passwordCheck}
+          onChange={onChangePasswordCheck}
+          type="password"
+        />
+        <span>Name</span>
         <Input value={name} onChange={onChangeName} />
         <div>
           <Button onClick={setCoord}>위치등록</Button>
@@ -127,27 +141,30 @@ const Start = () => {
     const [id, onChangeId] = useInput("");
     const [password, onChangePassword] = useInput("");
     const onSubmit = () => {
-      axiosInstance
-        .post("/users/login", {
-          mb_id: id,
-          mb_pw: password,
-        })
-        .then((res) => {
-          if (res.data) {
-            window.localStorage.setItem("lat", res.data.mb_lati);
-            window.localStorage.setItem("long", res.data.mb_longi);
-            window.localStorage.setItem("id", res.data.mb_id);
-
-            nav("/main");
-          }
-        });
+      if (id !== "" && password !== "") {
+        axiosInstance
+          .post("/users/login", {
+            mb_id: id,
+            mb_pw: password,
+          })
+          .then((res) => {
+            if (res.data) {
+              window.localStorage.setItem("lat", res.data.mb_lati);
+              window.localStorage.setItem("long", res.data.mb_longi);
+              window.localStorage.setItem("id", res.data.mb_id);
+              nav("/main/1");
+            }
+          });
+      } else {
+        alert("모든 항목을 입력해주세요!");
+      }
     };
     return (
       <AddInfoContainer>
-        <text>ID</text>
+        <span>ID</span>
         <Input value={id} onChange={onChangeId} />
-        <text>Password</text>
-        <Input value={password} onChange={onChangePassword} />
+        <span>Password</span>
+        <Input value={password} onChange={onChangePassword} type="password" />
         <div>
           <Button onClick={toggleSignup}>To SIGNUP</Button>
           <Button onClick={onSubmit}>LOGIN</Button>

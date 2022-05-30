@@ -7,7 +7,11 @@ const SelectList = ({ data, onChangeCategoryState }: ISelectList) => {
     <SelectListContainer onChange={onChangeCategoryState}>
       <option>선택해주세요!</option>
       {data.map((item, index) => {
-        return <option value={item}>{item}</option>;
+        return (
+          <option value={item} key={index}>
+            {item}
+          </option>
+        );
       })}
     </SelectListContainer>
   );

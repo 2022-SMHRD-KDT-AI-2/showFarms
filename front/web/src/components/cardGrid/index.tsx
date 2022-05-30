@@ -21,6 +21,7 @@ const CardGrid = ({ category, post }: ICardGrid) => {
           ? post.slice(0, 4).map((item, index) => {
               return (
                 <Card
+                  type={category}
                   title={item.post_title}
                   img={item.post_img}
                   seller={item.mb_id}

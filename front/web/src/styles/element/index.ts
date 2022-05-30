@@ -59,7 +59,7 @@ export const CardContainer = styled(FlexColumnDiv)`
   width: 100%;
   margin: 1rem;
 
-  text {
+  span {
     margin: 0.3vh;
   }
 
@@ -79,16 +79,17 @@ export const CardContainer = styled(FlexColumnDiv)`
   }
 `;
 
-export const CardHeader = styled.text`
+export const CardHeader = styled.span`
   font-size: 1.7rem;
   font-weight: bold;
 `;
 
-export const CardContents = styled.text`
+export const CardContents = styled.span`
   font-size: 1.2rem;
   text-overflow: ellipsis;
 `;
 export const CardGridContainer = styled(FlexColumnDiv)`
+  width: 100%;
   margin: 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 `;
@@ -241,6 +242,11 @@ export const MovieItem = styled.div`
     height: 900px;
   }
 
+  > video {
+    width: 1600px;
+    height: 900px;
+  }
+
   .size1 {
     font-size: 2.5rem;
     font-weight: bold;
@@ -255,7 +261,7 @@ export const MovieItem = styled.div`
     flex-direction: row;
     align-items: center;
 
-    text {
+    span {
       margin: 1rem;
     }
   }

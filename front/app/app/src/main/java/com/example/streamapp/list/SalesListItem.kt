@@ -1,9 +1,9 @@
 package com.example.streamapp.list
 
 data class SalesListItem(
-    val img: Int,
+    val img: String,
     val title: String,
-    val price: Int,
+    val price: String,
     val unit: String,
     val shipmentFee: String,
     val url: String,
