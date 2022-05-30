@@ -2,19 +2,18 @@ package com.example.streamapp.list
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.streamapp.MainActivity
+import com.bumptech.glide.Glide
 import com.example.streamapp.R
 import com.example.streamapp.camera.CameraActivity
 import com.example.streamapp.databinding.SalesItemBinding
 
 class SalesListAdapter(private val context: Context):
     RecyclerView.Adapter<SalesListAdapter.ViewHolder>() {
-    var data = mutableListOf<SalesListItem>()
+    var data = mutableListOf<PostVO>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SalesListAdapter.ViewHolder {
         val binding = SalesItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -35,16 +34,15 @@ class SalesListAdapter(private val context: Context):
         private val shipment = binding.textViewShipment
         private val button = binding.buttonCameraStart
 
-        fun bind(item: SalesListItem) {
-            img.setImageResource(item.img)
-            title.text = item.title
-            price.text = item.price.toString()
-            unit.text = item.unit
-            shipment.text = item.shipmentFee
+        fun bind(item: PostVO) {
+            Glide.with(context).load("http://121.147.185.200:8081/images/" + item.post_img).into(img)
+            title.text = item.post_title
+            price.text = item.post_price
+            unit.text = item.post_unit
+            shipment.text = item.post_shipping
             button.setOnClickListener{
-                Log.i("state", "click")
                 val intent = Intent(context, CameraActivity::class.java)
-                intent.putExtra("url", item.url)
+                intent.putExtra("url", item.post_id)
                 context.startActivity(intent)
             }
         }

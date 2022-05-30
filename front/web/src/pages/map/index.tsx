@@ -24,7 +24,6 @@ export default function KakaoMap() {
         mb_longi: long,
       })
       .then((res) => {
-        console.log(res.data);
         if (res.data) {
           setData(res.data.userList);
           setPost(res.data.postList);
@@ -49,6 +48,7 @@ export default function KakaoMap() {
               {data.map((item, index) => {
                 return (
                   <MapMarker
+                    key={index}
                     position={{ lat: item.mb_lati, lng: item.mb_longi }}
                     clickable={true}
                     onClick={() => {

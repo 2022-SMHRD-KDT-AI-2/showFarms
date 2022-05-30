@@ -1,7 +1,7 @@
 import React from "react";
 import { AppContainer } from "./styles/layout";
 import loadable from "@loadable/component";
-import { Routes, Route } from "react-router";
+import { Route, Routes } from "react-router";
 
 const Home = loadable(() => import("./pages/home"));
 const Movies = loadable(() => import("./pages/movies"));
@@ -14,9 +14,9 @@ function App() {
       <AppContainer>
         <Routes>
           <Route path={"/"} element={<Start />} />
-          <Route path={"/main"} element={<Home />} />
+          <Route path={"/main/:page"} element={<Home />} />
           <Route path={"/map"} element={<KakaoMap />} />
-          <Route path={"/movies"} element={<Movies />} />
+          <Route path={"/movies/:postid"} element={<Movies />} />
         </Routes>
       </AppContainer>
     </>

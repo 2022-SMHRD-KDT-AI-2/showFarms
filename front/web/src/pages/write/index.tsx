@@ -11,6 +11,7 @@ import { category } from "../../datas";
 import { FlexRowDiv } from "../../styles/common";
 import axiosInstance from "../../utils/AxiosInstance";
 import { IWrite } from "../../types";
+import { useNavigate } from "react-router";
 
 const Write = ({ onCloseModal }: IWrite) => {
   const [title, onChangeTitle] = useInput("");
@@ -19,6 +20,7 @@ const Write = ({ onCloseModal }: IWrite) => {
   const [shipping, onChangeShipping] = useInput("");
   const [categoryState, setCategoryState] = useState<string>("");
   const [base64, image, onChangeImage] = useImage();
+  const nav = useNavigate();
 
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
 
@@ -40,10 +42,11 @@ const Write = ({ onCloseModal }: IWrite) => {
   const onSubmit = () => {
     const contents = convertToRaw(editorState.getCurrentContent()).blocks[0]
       .text;
+
     axiosInstance
       .post("/posts/new", {
         base64: base64,
-        mb_id: "test",
+        mb_id: window.localStorage.getItem("id"),
         post_title: title.toString(),
         post_price: parseInt(price),
         post_unit: unit.toString(),
@@ -52,7 +55,10 @@ const Write = ({ onCloseModal }: IWrite) => {
         post_category: categoryState.toString(),
       })
       .then((res) => {
-        if (res.data) onCloseModal();
+        if (res.data) {
+          onCloseModal();
+          nav("/main/1");
+        }
       });
   };
   return (
@@ -70,7 +76,7 @@ const Write = ({ onCloseModal }: IWrite) => {
       />
       <span>
         <div>
-          <text>상품명</text>
+          <span>상품명</span>
           <Input
             width={"100%"}
             placeholder={"상품명을 입력하세요."}
@@ -79,7 +85,7 @@ const Write = ({ onCloseModal }: IWrite) => {
           />
         </div>
         <div>
-          <text>가격</text>
+          <span>가격</span>
           <Input
             width={"100%"}
             placeholder={"가격을 입력해주세요."}
@@ -88,7 +94,7 @@ const Write = ({ onCloseModal }: IWrite) => {
           />
         </div>
         <div>
-          <text>단위</text>
+          <span>단위</span>
           <Input
             width={"100%"}
             placeholder={"KG or Box"}
@@ -97,14 +103,14 @@ const Write = ({ onCloseModal }: IWrite) => {
           />
         </div>
         <div>
-          <text>분류</text>
+          <span>분류</span>
           <SelectList
             data={category}
             onChangeCategoryState={onChangeCategoryState}
           />
         </div>
         <div>
-          <text>배송비</text>
+          <span>배송비</span>
           <Input
             width={"100%"}
             placeholder={"가격을 입력해주세요."}

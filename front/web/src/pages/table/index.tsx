@@ -9,8 +9,7 @@ const Table = () => {
     axiosInstance
       .get(`/trade/${window.localStorage.getItem("id")}`)
       .then((res) => {
-        console.log(res.data);
-        setData(res.data);
+        if (res.data) setData(res.data);
       });
   }, []);
   return (
