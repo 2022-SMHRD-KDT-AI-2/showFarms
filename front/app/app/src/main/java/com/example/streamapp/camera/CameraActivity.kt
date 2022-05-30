@@ -37,7 +37,8 @@ class CameraActivity : AppCompatActivity(), ConnectCheckerRtmp, SurfaceHolder.Ca
         rtmpCamera1 = RtmpCamera1(binding.surfaceView, this)
         binding.ButtonStart.setOnClickListener(this)
 
-        url = intent.getStringExtra("url")!!
+        url = "rtmp://172.30.1.9/live/"
+        url += intent.getStringExtra("url")!!
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -85,7 +86,7 @@ class CameraActivity : AppCompatActivity(), ConnectCheckerRtmp, SurfaceHolder.Ca
         if (!rtmpCamera1.isStreaming) {
             binding.ButtonStart.text = "Stream Stop"
 
-            rtmpCamera1.prepareVideo(640, 480, 30, 1200 * 1024, 2, 90, 0,
+            rtmpCamera1.prepareVideo(640, 480, 30, 1200 * 1024, 3, 90, 0,
                 1)
             rtmpCamera1.prepareAudio(
                 128 * 1024,
@@ -99,7 +100,7 @@ class CameraActivity : AppCompatActivity(), ConnectCheckerRtmp, SurfaceHolder.Ca
             type = Request.Method.DELETE
         }
 
-        val req = StringRequest(type, "http://121.147.185.200:8081/live/797", {
+        val req = StringRequest(type, "http://121.147.185.200:8081/live/" + intent.getStringExtra("url"), {
             Log.i("res", it)
         }, {
             Log.i("res", it.toString())

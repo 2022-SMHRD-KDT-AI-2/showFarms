@@ -4,7 +4,6 @@ import {
   CardGridContents,
   CardGridHeader,
   GirdHeader,
-  Link,
 } from "../../styles/element";
 import Card from "../card";
 import { ICardGrid } from "../../types";
@@ -14,7 +13,6 @@ const CardGrid = ({ category, post }: ICardGrid) => {
     <CardGridContainer>
       <GirdHeader>
         <CardGridHeader>{category}</CardGridHeader>
-        <Link>더보기</Link>
       </GirdHeader>
       <CardGridContents>
         {category == "Live"

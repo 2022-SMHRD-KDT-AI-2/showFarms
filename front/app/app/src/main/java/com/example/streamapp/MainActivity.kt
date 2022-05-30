@@ -44,10 +44,8 @@ class MainActivity : AppCompatActivity() {
         hideSystemUI(window)
 
         val params = HashMap<String, String>()
-        //params["mb_id"] = binding.editTextId.toString()
-        params["mb_id"] = "hyeseong"
-        //params["mb_pw"] = binding.editTextTextPassword.toString()
-        params["mb_pw"] = "asdf1234"
+        params["mb_id"] = binding.editTextId.toString()
+        params["mb_pw"] = binding.editTextTextPassword.toString()
         val json = (params as Map<*, *>?)?.let { JSONObject(it) }
 
         binding.ButtonLogin.setOnClickListener {

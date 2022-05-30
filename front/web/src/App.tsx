@@ -7,6 +7,7 @@ const Home = loadable(() => import("./pages/home"));
 const Movies = loadable(() => import("./pages/movies"));
 const KakaoMap = loadable(() => import("./pages/map"));
 const Start = loadable(() => import("./pages/start"));
+const Search = loadable(() => import("./pages/search"));
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path={"/main/:page"} element={<Home />} />
           <Route path={"/map"} element={<KakaoMap />} />
           <Route path={"/movies/:postid"} element={<Movies />} />
+          <Route path={"/search/:search"} element={<Search />} />
         </Routes>
       </AppContainer>
     </>

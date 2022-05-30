@@ -14,6 +14,7 @@ export default function KakaoMap() {
   const [data, setData] = useState<IUser[]>([]);
   const [post, setPost] = useState<IPost[]>([]);
   const [show, setShow] = useState<IPost[]>([]);
+
   useEffect(() => {
     const lat = window.localStorage.getItem("lat");
     const long = window.localStorage.getItem("long");
@@ -28,12 +29,18 @@ export default function KakaoMap() {
           setData(res.data.userList);
           setPost(res.data.postList);
         }
+        console.log(res.data);
       });
     if (lat && long) setCoord({ lat: parseFloat(lat), lng: parseFloat(long) });
   }, []);
+
   const getSellerItem = (id: string) => {
-    return post.filter((item) => item.mb_id == id);
+    return post.filter(
+      (item) =>
+        item.mb_id == id && item.mb_id != window.localStorage.getItem("id")
+    );
   };
+
   return (
     <div>
       <Header />
