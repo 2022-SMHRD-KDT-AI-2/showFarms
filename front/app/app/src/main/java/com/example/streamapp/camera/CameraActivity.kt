@@ -99,8 +99,8 @@ class CameraActivity : AppCompatActivity(), ConnectCheckerRtmp, SurfaceHolder.Ca
             rtmpCamera1.stopStream()
             type = Request.Method.DELETE
         }
-
-        val req = StringRequest(type, "http://121.147.185.200:8081/live/" + intent.getStringExtra("url"), {
+        val url = intent.getStringExtra("url")
+        val req = StringRequest(type, "http://121.147.185.200:8081/live/$url", {
             Log.i("res", it)
         }, {
             Log.i("res", it.toString())

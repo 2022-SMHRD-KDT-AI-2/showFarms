@@ -21,6 +21,9 @@ const Card = ({
 }: ICard) => {
   const [view, , openView, closeView] = useToggleModal();
   const nav = useNavigate();
+  const highlight = () => {
+    return type == "Live" ? <div className="highlight">Live</div> : null;
+  };
   return (
     <div
       style={{
@@ -38,6 +41,7 @@ const Card = ({
           <CardContents>{price}</CardContents>
           <CardContents>{shipmentFee}</CardContents>
         </div>
+        {highlight()}
       </CardContainer>
       {view && (
         <Modal

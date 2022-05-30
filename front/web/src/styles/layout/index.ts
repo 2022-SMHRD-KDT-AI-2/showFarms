@@ -151,6 +151,10 @@ export const ShopListContainer = styled(FlexColumnDiv)`
   height: 99vh;
   margin: 0.5vh;
   overflow: scroll;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const ShopListItem = styled(FlexRowDiv)`
@@ -254,8 +258,14 @@ export const LoginButton = styled.button`
 export const TableContainer = styled.div`
   text-align: center;
 
+  * {
+    margin: 1rem;
+  }
+
   table {
-    border-collapse: collapse;
+    //border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0 2rem;
   }
 
   th {
@@ -318,6 +328,11 @@ export const HeaderContainer = styled.div`
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   padding: 1rem;
   justify-content: center;
+
+  button {
+    width: fit-content;
+    font-size: 2.3rem;
+  }
 
   h1 {
     font-size: 2.3rem;
@@ -388,7 +403,7 @@ export const Pagination = styled.div`
   button {
     font-size: 2.3rem;
     margin: 0.3rem;
-    background-color: ${agriculture[3]};
+    background-color: ${agriculture[0]};
     border-radius: 0.5rem;
     border: none;
     text-align: center;

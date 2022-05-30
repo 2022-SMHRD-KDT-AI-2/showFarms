@@ -50,8 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.ButtonLogin.setOnClickListener {
             val request = JsonObjectRequest(Request.Method.POST,"http://121.147.185.200:8081/users/login",json,
-                { res ->
-                    Log.i("login", res.toString())
+                {
                 },
                 {
                 })
@@ -59,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
 
             val intent: Intent = Intent(this@MainActivity, SalesListActivity::class.java)
-            intent.putExtra("id", "hyeseong")
+            intent.putExtra("id", "test")
             startActivity(intent)
         }
 
