@@ -19,7 +19,8 @@ export const HomeContainer = styled(FlexColumnDiv)`
 `;
 
 export const PostContainer = styled(FlexColumnDiv)`
-  max-width: 1200px;
+  width: 1200px;
+  height: 1200px;
 
   * {
     padding: 1rem;
@@ -149,6 +150,7 @@ export const ShopListContainer = styled(FlexColumnDiv)`
   width: 23vw;
   height: 99vh;
   margin: 0.5vh;
+  overflow: scroll;
 `;
 
 export const ShopListItem = styled(FlexRowDiv)`

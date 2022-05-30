@@ -24,26 +24,24 @@ const Table = () => {
             <th className="width4">구매자</th>
             <th className="width4">거래량</th>
             <th className="width4">단가</th>
-            <th className="width1">총금액</th>
           </tr>
         </thead>
-        {data.length >= 1 &&
-          data.map((item, index) => {
-            return (
-              <tbody key={index}>
-                <tr>
-                  <td>{item.no}</td>
-                  <td>{item.date.toString()}</td>
-                  <td>{item.title}</td>
-                  <td>{item.seller}</td>
-                  <td>{item.buyer}</td>
-                  <td>{item.amount}</td>
-                  <td>{item.price}</td>
-                  <td>{item.amount * item.price}</td>
-                </tr>
-              </tbody>
-            );
-          })}
+        {data.map((item, index) => {
+          const date = new Date(item.trade_dt);
+          return (
+            <tbody key={index}>
+              <tr>
+                <td>{index + 1}</td>
+                <td>{`${date.getFullYear()} ${date.getMonth()} ${date.getDate()} ${date.getHours()}:${date.getMinutes()}`}</td>
+                <td>{item.post_title}</td>
+                <td>{item.mb_id}</td>
+                <td>{item.buyer_id}</td>
+                <td>{item.vol}</td>
+                <td>{item.trade_price}</td>
+              </tr>
+            </tbody>
+          );
+        })}
       </table>
     </TableContainer>
   );

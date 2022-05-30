@@ -25,7 +25,7 @@ const Post = ({
         .post("/trade/new", {
           trade_price: price,
           vol: amount,
-          mb_id: seller,
+          mb_id: window.localStorage.getItem("id"),
           buyer_id: "test",
           post_id: postId,
           post_title: title,

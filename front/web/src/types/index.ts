@@ -5,7 +5,7 @@ export interface IPost {
   mb_id: string;
   post_category: string;
   post_content: string;
-  post_dt: string;
+  post_dt: Date;
   post_id: number;
   post_img: string;
   post_price: number;
@@ -70,13 +70,13 @@ export interface ISelectList {
 }
 
 export interface ITable {
-  no: number;
-  date: Date;
-  title: string;
-  seller: string;
-  buyer: string;
-  amount: number;
-  price: number;
+  trade_id: number;
+  trade_dt: Date;
+  post_title: string;
+  mb_id: string;
+  buyer_id: string;
+  vol: number;
+  trade_price: number;
 }
 
 export interface IWrite {

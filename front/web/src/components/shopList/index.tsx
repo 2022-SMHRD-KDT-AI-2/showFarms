@@ -18,7 +18,7 @@ const ShopList = ({ data }: { data: IPost[] }) => {
     <ShopListContainer>
       {data.map((item, index) => {
         return (
-          <div>
+          <div key={index}>
             <ShopListItem key={index} onClick={openView}>
               <ShopItemImg src={imageTarget + item.post_img} />
               <ShopItemInfo>
@@ -42,7 +42,7 @@ const ShopList = ({ data }: { data: IPost[] }) => {
                     postId={item.post_id}
                     category={item.post_category}
                     contents={item.post_content}
-                    unit={item.post_content}
+                    unit={item.post_unit}
                     shipping={item.post_shipping}
                     seller={item.mb_id}
                     onClose={closeView}
