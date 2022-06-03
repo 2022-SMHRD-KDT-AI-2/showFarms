@@ -33,8 +33,10 @@ Back
 - RTMP
 
 `영상처리 서버 및 DL / ML`
-- Python(v. 3), Flask
+- Python(v. 3), FastAPI
+- Django, NGINX
 - OpenCV
+- Aruco Marker
 
 `메인서버`
 - Spring, Java
@@ -47,7 +49,7 @@ Back
 | 구예림(팀장) | Deep Learning(YOLO), 데이터 전처리 및 분석 |
 | 윤중열     | Back-End                          |
 | 장강근     | web 기능개발 및 ui 디자인                 |
-| 김영재     | Deep Learning(YOLO), Flask        |
+| 김영재     | Deep Learning(YOLO), 데이터 전처리 및 분석        |
 | 임혜성     | Front-End 총괄                      |
 | 서명진     | Back-End                          |
  
