@@ -55,6 +55,7 @@ Back
  
 
 # DB Tables
+![0526 erd](https://user-images.githubusercontent.com/99248706/172281961-b1ad81fd-9154-4cd4-a81e-45cc03517142.PNG)
 
 # 구현 / 개발 세부내용
 
