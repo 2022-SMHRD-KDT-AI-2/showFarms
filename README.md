@@ -35,6 +35,7 @@ Back
 `영상처리 서버 및 DL / ML`
 - Python(v. 3), FastAPI
 - Django, NGINX
+- YOLOv5
 - OpenCV
 - Aruco Marker
 
